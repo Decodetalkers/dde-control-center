@@ -11,3 +11,11 @@ indent_size = 4
 [*.{cpp,h}]
 indent_style = space
 indent_size = 4
+
+[*.{qml}]
+indent_style = space
+indent_size = 4
+
+[*.{qrc}]
+indent_style = space
+indent_size = 4

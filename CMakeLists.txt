@@ -247,11 +247,11 @@ install(FILES misc/dde-control-center.desktop DESTINATION ${CMAKE_INSTALL_DATARO
 
 #service
 configure_file(
-    ${CMAKE_SOURCE_DIR}/misc/org.deepin.dde.ControlCenter1.service.in 
-    ${CMAKE_CURRENT_BINARY_DIR}/org.deepin.dde.ControlCenter1.service 
+    ${CMAKE_SOURCE_DIR}/misc/org.deepin.dde.ControlCenter1.service.in
+    ${CMAKE_CURRENT_BINARY_DIR}/org.deepin.dde.ControlCenter1.service
     @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.deepin.dde.ControlCenter1.service 
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/services)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.deepin.dde.ControlCenter1.service
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/dbus-1/services)
 
 # dev files
 file(GLOB HEADERS "include/*")
@@ -375,6 +375,31 @@ if (UNITTEST)
 
     target_link_libraries(${Plugin_Test2_Name} PRIVATE
         ${Plugin_Test2_Libraries}
+    )
+endif()
+
+#--------------------------plugin-test3--------------------------
+if (UNITTEST)
+    set(Plugin_Test3_Name plugin-test3)
+    find_package(Qt5 COMPONENTS REQUIRED Quick QuickWidgets)
+    find_package(DtkDeclarative)
+    file(GLOB_RECURSE Plugin_Test3_SRCS
+        "tests/plugin-test3/*.h"
+        "tests/plugin-test3/*.cpp"
+        "tests/plugin-test3/quicksource.qrc"
+    )
+
+    add_library(${Plugin_Test3_Name} MODULE
+        ${Plugin_Test3_SRCS}
+    )
+
+    target_link_libraries(${Plugin_Test3_Name} PRIVATE
+        Qt5::Widgets
+        Qt5::DBus
+        Qt5::Quick
+        Qt5::QuickWidgets
+        Dtk::Widget
+        ${DtkDeclarative_LIBRARIES}
     )
 endif()
 
