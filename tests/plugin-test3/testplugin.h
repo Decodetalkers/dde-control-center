@@ -12,10 +12,13 @@ class Test2Plugin : public DCC_NAMESPACE::PluginInterface
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "com.deepin.dde.ControlCenter.test3" FILE "plugin-test.json")
     Q_INTERFACES(DCC_NAMESPACE::PluginInterface)
+
 public:
-    explicit Test2Plugin(QObject *parent = nullptr);
     virtual QString name() const override;
     virtual DCC_NAMESPACE::ModuleObject *module() override;
+
+signals:
+    void updateAll();
 };
 
 class QQuickPageModule : public dccV23::PageModule
@@ -25,4 +28,6 @@ public:
     explicit QQuickPageModule(QObject *parent = nullptr);
 
     QWidget *page() override;
+
+    void active() override;
 };

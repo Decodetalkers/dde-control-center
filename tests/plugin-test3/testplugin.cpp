@@ -7,26 +7,16 @@
 #include "tests/plugin-test3/BackendObject.h"
 
 #include <interface/pagemodule.h>
+#include <qqmllist.h>
 
 #include <DGuiApplicationHelper>
 
 #include <QLabel>
 #include <QPalette>
+#include <QQmlEngine>
 #include <QQuickWidget>
 
 using namespace DCC_NAMESPACE;
-
-Test2Plugin::Test2Plugin(QObject *parent)
-    : DCC_NAMESPACE::PluginInterface(parent)
-{
-    qmlRegisterSingletonType<BackendObject>("Command.Base",
-                                            1,
-                                            0,
-                                            "BackendObject",
-                                            [](QQmlEngine *, QJSEngine *) -> QObject * {
-                                                return new BackendObject;
-                                            });
-}
 
 QString Test2Plugin::name() const
 {
@@ -45,6 +35,16 @@ QQuickPageModule::QQuickPageModule(QObject *parent)
     this->setDescription("Qml Test");
     this->setDisplayName("Qml Test");
     this->setName("qmltest");
+    qmlRegisterSingletonType<BackendObject>(
+            "Command.Base",
+            1,
+            0,
+            "BackendObject",
+            [](QQmlEngine *, QJSEngine *) -> QObject * {
+                auto bak = BackendObject::instance();
+                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
+                return bak;
+            });
 }
 
 QWidget *QQuickPageModule::page()
@@ -56,4 +56,9 @@ QWidget *QQuickPageModule::page()
 
     quickwidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     return quickwidget;
+}
+
+void QQuickPageModule::active()
+{
+    BackendObject::instance()->active();
 }

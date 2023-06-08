@@ -11,7 +11,7 @@ import Command.Base 1.0
 Item {
     id: root
     GroupBox {
-        title: "Title"
+        title: BackendObject.StaticHostname
         anchors.horizontalCenter: parent.horizontalCenter
 
         ColumnLayout {
