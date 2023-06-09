@@ -7,7 +7,6 @@
 #include "tests/plugin-test3/BackendObject.h"
 
 #include <interface/pagemodule.h>
-#include <qqmllist.h>
 
 #include <DGuiApplicationHelper>
 

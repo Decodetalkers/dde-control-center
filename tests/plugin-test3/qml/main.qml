@@ -11,50 +11,34 @@ import Command.Base 1.0
 Item {
     id: root
     GroupBox {
-        title: BackendObject.StaticHostname
+        //title: BackendObject.StaticHostname
         anchors.horizontalCenter: parent.horizontalCenter
 
         ColumnLayout {
             spacing: 20
             anchors.fill: parent
 
+            Dtk.Button {
+                text: BackendObject.StaticHostname
+            }
             Text {
-                text: BackendObject.name
+                text: BackendObject.edition
+                //visible: false
             }
-            RadioButton {
-                text: "First"
-                checked: BackendObject.name === text
-                Layout.preferredWidth : root.width * 2 / 3
-                Layout.fillWidth: true
-                onClicked: {
-                    BackendObject.name = text
-                }
+            Text {
+                text: BackendObject.cputype
             }
-            RadioButton {
-                text: "Second"
-                checked: BackendObject.name === text 
-                onClicked: {
-                    BackendObject.name = text
-                }
+            Text {
+                text: BackendObject.processor
             }
-            RadioButton {
-                text: "Third"
-                checked: BackendObject.name === text 
-                onClicked: {
-                    BackendObject.name = text
-                }
+            Text {
+                text: BackendObject.memory
             }
-            Switch {
-                checked: BackendObject.isGangdum
-                onClicked : {
-                    BackendObject.isGangdum = checked
-                }
+            Text {
+                text: BackendObject.graphicsPlatform
             }
-            Dtk.Switch {
-                checked: BackendObject.isGangdum
-                onClicked : {
-                    BackendObject.isGangdum = checked
-                }
+            Text {
+                text: BackendObject.kernel
             }
         }
     }
