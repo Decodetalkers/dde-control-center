@@ -9,13 +9,14 @@ ScrollabelPage {
     id: root
 
     ColumnLayout {
+        spacing: 30
         //anchors.fill: parent
         anchors.horizontalCenter: parent.horizontalCenter
 
         AboutThisPc.PcImage {
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: 280
-            Layout.preferredHeight: 280
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 200
         }
 
         AboutThisPc.HostName {

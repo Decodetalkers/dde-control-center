@@ -86,4 +86,9 @@ GroupBox {
 
     }
 
+    background: Rectangle {
+        radius: 5
+        color: "transparent"
+    }
+
 }

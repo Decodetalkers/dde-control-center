@@ -16,9 +16,13 @@ Page {
 
         Pane {
             id: pane
+
             width: parent.width
         }
 
-        ScrollIndicator.vertical: ScrollIndicator { }
+        ScrollIndicator.vertical: ScrollIndicator {
+        }
+
     }
+
 }

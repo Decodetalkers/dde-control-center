@@ -17,7 +17,9 @@ ColumnLayout {
         }
 
         Dtk.Button {
-            text: "e"
+            icon.name: "dcc_edit"
+            Layout.preferredWidth: 30
+            Layout.preferredHeight: 30
             onClicked: {
                 hostname.showedit = true;
             }
@@ -26,7 +28,6 @@ ColumnLayout {
     }
 
     TextField {
-        Layout.fillWidth: true
         Layout.alignment: Qt.AlignCenter | Qt.AlignBaseline
         text: BackendObject.StaticHostname
         visible: hostname.showedit
