@@ -105,20 +105,23 @@ void BackendObject::active()
         return;
     }
 
-    QString version;
-    if (DSysInfo::uosType() == DSysInfo::UosServer
-        || DSysInfo::uosEditionType() == DSysInfo::UosEuler) {
-        version = QString("%1%2").arg(DSysInfo::minorVersion(), DSysInfo::uosEditionName());
-    } else if (DSysInfo::isDeepin()) {
-        version = QString("%1 (%2)").arg(DSysInfo::uosEditionName(), DSysInfo::minorVersion());
-    } else {
-        version = QString("%1 %2").arg(DSysInfo::productVersion(), DSysInfo::productTypeString());
-    }
-    m_edition = version;
+    m_edition = std::visit([]() -> QString {
+        QString version;
+        if (DSysInfo::uosType() == DSysInfo::UosServer
+            || DSysInfo::uosEditionType() == DSysInfo::UosEuler) {
+            version = QString("%1%2").arg(DSysInfo::minorVersion(), DSysInfo::uosEditionName());
+        } else if (DSysInfo::isDeepin()) {
+            version = QString("%1 (%2)").arg(DSysInfo::uosEditionName(), DSysInfo::minorVersion());
+        } else {
+            version =
+                    QString("%1 %2").arg(DSysInfo::productVersion(), DSysInfo::productTypeString());
+        }
+        return version;
+    });
     m_cputype = QString("%1-bit").arg(QSysInfo::WordSize);
     m_kernel = QSysInfo::kernelVersion();
     m_processor = DSysInfo::cpuModelName();
-    m_memory = std::invoke([]() -> QString {
+    m_memory = std::visit([]() -> QString {
         qulonglong memoryTotalSize = static_cast<qulonglong>(DSysInfo::memoryTotalSize());
         QString mem = formatCap(memoryTotalSize);
         return QString("%1 (%2)").arg(mem).arg(tr("available"));
