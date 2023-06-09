@@ -78,6 +78,9 @@ void BackendObject::connectToDBus()
 
 void BackendObject::setStaticHostname(const QString &value)
 {
+    if (value == m_staticHostName) {
+        return;
+    }
     QList<QVariant> argumentList;
     argumentList << QVariant::fromValue(value) << QVariant::fromValue(true);
     m_hostname1Inter->asyncCallWithArgumentList("SetStaticHostname", argumentList);

@@ -2,5 +2,7 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
+        <file>qml/aboutThisPc/HostName.qml</file>
+        <file>qml/aboutThisPc/SystemInfo.qml</file>
     </qresource>
 </RCC>
