@@ -30,6 +30,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignCenter | Qt.AlignBaseline
         text: BackendObject.StaticHostname
         visible: hostname.showedit
+        focus: hostname.showedit
         onAccepted: {
             BackendObject.StaticHostname = text;
             hostname.showedit = false;

@@ -3,6 +3,11 @@
     <qresource prefix="/">
         <file>qml/main.qml</file>
         <file>qml/aboutThisPc/HostName.qml</file>
+        <file>qml/aboutThisPc/PcImage.qml</file>
         <file>qml/aboutThisPc/SystemInfo.qml</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>resources/icon_about_pc.svg</file>
+        <file>resources/icon_about_laptop.svg</file>
     </qresource>
 </RCC>

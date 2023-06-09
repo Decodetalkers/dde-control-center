@@ -16,6 +16,10 @@ class BackendObject final : public QObject
 public:
     static BackendObject *instance();
 
+    Q_PROPERTY(QString isLaptop READ isLaptop NOTIFY isLaptopChanged)
+
+    inline bool isLaptop() { return m_isLaptop; }
+
     Q_PROPERTY(QString StaticHostname READ staticHostname WRITE setStaticHostname NOTIFY staticHostnameChanged)
 
     inline QString staticHostname() { return m_staticHostName; }
@@ -54,6 +58,8 @@ private:
     void connectToDBus();
 
 signals:
+    void isLaptopChanged();
+
     void StaticHostnameChanged(const QString &value) const;
     void staticHostnameChanged();
     void AuthorizationStateChanged(const int value) const;
@@ -62,6 +68,7 @@ signals:
     void baseInformationChanged();
 
 private:
+    bool m_isLaptop;
     QString m_staticHostName;
     std::optional<QString> m_edition;
     std::optional<QString> m_cputype;

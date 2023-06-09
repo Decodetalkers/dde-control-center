@@ -11,6 +11,10 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
 
+        AboutThisPc.PcImage {
+            Layout.alignment: Qt.AlignHCenter
+        }
+
         AboutThisPc.HostName {
             Layout.alignment: Qt.AlignHCenter
         }

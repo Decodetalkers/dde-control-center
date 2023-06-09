@@ -2,6 +2,7 @@
 
 #include <DSysInfo>
 
+#include <QDir>
 #include <QGuiApplication>
 
 #include <math.h>
@@ -17,6 +18,12 @@ const QString PLATFORM_NAME = std::visit([]() -> QString {
     }
     return platformname;
 });
+
+// if there is lid, it is laptop
+inline static bool islaptopFileExist()
+{
+    return QDir("/proc/acpi/button/lid").exists();
+}
 
 static QString formatCap(qulonglong cap, const int size = 1024, quint8 precision = 1)
 {
@@ -54,6 +61,7 @@ BackendObject *BackendObject::instance()
 
 BackendObject::BackendObject(QObject *parent)
     : QObject(parent)
+    , m_isLaptop(islaptopFileExist())
     , m_edition(std::nullopt)
     , m_cputype(std::nullopt)
     , m_processor(std::nullopt)
