@@ -6,6 +6,7 @@
         <file>qml/aboutThisPc/HostName.qml</file>
         <file>qml/aboutThisPc/PcImage.qml</file>
         <file>qml/aboutThisPc/SystemInfo.qml</file>
+        <file>qml/widgets/SettingRowItem.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>resources/icon_about_pc.svg</file>

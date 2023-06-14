@@ -50,7 +50,6 @@ QWidget *QQuickPageModule::page()
 {
     auto quickwidget = new QQuickWidget;
     quickwidget->setSource(QUrl("qrc:/qml/main.qml"));
-    quickwidget->setAttribute(Qt::WA_AlwaysStackOnTop);
     quickwidget->setClearColor(Qt::transparent);
 
     quickwidget->setResizeMode(QQuickWidget::SizeRootObjectToView);

@@ -6,13 +6,16 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.11
 
+import "../widgets" as DCCWidget
+
 GroupBox {
     ColumnLayout {
-        spacing: 20
+        spacing: 1
         anchors.fill: parent
         anchors.horizontalCenter: parent.horizontalCenter
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
                 text: qsTr("edition: ")
                 Layout.fillWidth: true
@@ -24,7 +27,8 @@ GroupBox {
 
         }
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
                 text: qsTr("type: ")
                 Layout.fillWidth: true
@@ -36,7 +40,8 @@ GroupBox {
 
         }
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
                 text: qsTr("processor: ")
                 Layout.fillWidth: true
@@ -48,7 +53,8 @@ GroupBox {
 
         }
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
                 text: qsTr("memory: ")
                 Layout.fillWidth: true
@@ -60,9 +66,10 @@ GroupBox {
 
         }
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
-                text: qsTr("graphicsPlatform: ")
+                text: qsTr("Graphics Platform: ")
                 Layout.fillWidth: true
             }
 
@@ -72,7 +79,8 @@ GroupBox {
 
         }
 
-        RowLayout {
+        DCCWidget.SettingRowItem {
+            Layout.fillWidth: true
             Text {
                 text: qsTr("kernel: ")
                 Layout.fillWidth: true
