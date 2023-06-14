@@ -3,7 +3,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 #include "testplugin.h"
 
+#include "interface/hlistmodule.h"
 #include "interface/moduleobject.h"
+
+// #include "interface/vlistmodule.h"
+
 #include "src/frame/utils.h"
 #include "tests/plugin-test3/BackendObject.h"
 #include "widgets/itemmodule.h"
@@ -49,12 +53,27 @@ QString Test2Plugin::name() const
 
 ModuleObject *Test2Plugin::module()
 {
-    auto top = new PageModule(this);
-    top->setIcon(QIcon::fromTheme("preferences-system"));
-    top->setDescription("Qml Test");
-    top->setDisplayName("Qml Test");
-    top->setName("qmltest");
-    auto module = new QQuickPageModule;
+    qmlRegisterSingletonType<BackendObject>(
+            "Command.Base",
+            1,
+            0,
+            "BackendObject",
+            [](QQmlEngine *, QJSEngine *) -> QObject * {
+                auto bak = BackendObject::instance();
+                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
+                return bak;
+            });
+
+    auto topPage = new HListModule(this);
+    topPage->setIcon(QIcon::fromTheme("preferences-system"));
+    topPage->setDescription("Qml Test");
+    topPage->setDisplayName("Qml Test");
+    topPage->setName("qmltest");
+    auto aboutPcPage = new PageModule(this);
+    aboutPcPage->setName("aboutPc");
+    aboutPcPage->setDisplayName(tr("About This Pc"));
+
+    auto module = new AboutThisPcModule;
     auto bottom = new ItemModule(
             "",
             "",
@@ -76,37 +95,28 @@ ModuleObject *Test2Plugin::module()
             },
             false);
     bottom->setExtra(true);
-    top->appendChild(module);
-    top->appendChild(bottom);
-    return top;
+    aboutPcPage->appendChild(module);
+    aboutPcPage->appendChild(bottom);
+    topPage->appendChild(aboutPcPage);
+    return topPage;
 }
 
-QQuickPageModule::QQuickPageModule(QObject *parent)
-    : DCC_NAMESPACE::ModuleObject(parent)
+AboutThisPcModule::AboutThisPcModule(QObject *parent)
+    : DCC_NAMESPACE::PageModule(parent)
 {
-    qmlRegisterSingletonType<BackendObject>(
-            "Command.Base",
-            1,
-            0,
-            "BackendObject",
-            [](QQmlEngine *, QJSEngine *) -> QObject * {
-                auto bak = BackendObject::instance();
-                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
-                return bak;
-            });
 }
 
-QWidget *QQuickPageModule::page()
+QWidget *AboutThisPcModule::page()
 {
     auto quickwidget = new QQuickWidget;
-    quickwidget->setSource(QUrl("qrc:/qml/main.qml"));
+    quickwidget->setSource(QUrl("qrc:/qml/aboutpc.qml"));
 
     quickwidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     quickwidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
     return quickwidget;
 }
 
-void QQuickPageModule::active()
+void AboutThisPcModule::active()
 {
     BackendObject::instance()->active();
 }

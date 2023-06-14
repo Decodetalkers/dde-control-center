@@ -21,11 +21,11 @@ signals:
     void updateAll();
 };
 
-class QQuickPageModule : public dccV23::ModuleObject
+class AboutThisPcModule : public dccV23::PageModule
 {
     Q_OBJECT
 public:
-    explicit QQuickPageModule(QObject *parent = nullptr);
+    explicit AboutThisPcModule(QObject *parent = nullptr);
 
     QWidget *page() override;
 

@@ -2,12 +2,13 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 import QtQuick 2.0
-import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.11
 import "aboutThisPc" as AboutThisPc
 
 Page {
     id: root
+
     ColumnLayout {
         spacing: 30
         anchors.horizontalCenter: parent.horizontalCenter
@@ -24,7 +25,7 @@ Page {
 
         AboutThisPc.SystemInfo {
             Layout.alignment: Qt.AlignHCenter
-            implicitWidth : root.width
+            implicitWidth: root.width
         }
 
     }

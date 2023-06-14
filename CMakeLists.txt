@@ -387,6 +387,7 @@ if (UNITTEST)
         "tests/plugin-test3/*.h"
         "tests/plugin-test3/*.cpp"
         "tests/plugin-test3/quicksource.qrc"
+        "tests/plugin-test3/qrc/systeminfo.qrc"
     )
 
     add_library(${Plugin_Test3_Name} MODULE

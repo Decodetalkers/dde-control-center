@@ -38,7 +38,6 @@ const QString PLATFORM_NAME = std::visit([]() -> QString {
     return platformname;
 });
 
-
 using namespace DCC_NAMESPACE;
 DCORE_USE_NAMESPACE
 
