@@ -21,7 +21,7 @@ signals:
     void updateAll();
 };
 
-class QQuickPageModule : public dccV23::PageModule
+class QQuickPageModule : public dccV23::ModuleObject
 {
     Q_OBJECT
 public:

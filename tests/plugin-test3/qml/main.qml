@@ -3,14 +3,13 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.11
+import QtQuick.Controls 2.0
 import "aboutThisPc" as AboutThisPc
 
-ScrollabelPage {
+Page {
     id: root
-
     ColumnLayout {
         spacing: 30
-        //anchors.fill: parent
         anchors.horizontalCenter: parent.horizontalCenter
 
         AboutThisPc.PcImage {
@@ -25,7 +24,7 @@ ScrollabelPage {
 
         AboutThisPc.SystemInfo {
             Layout.alignment: Qt.AlignHCenter
-            implicitWidth: root.width - 60 > 1000 ? 1000 : root.width - 60
+            implicitWidth : root.width
         }
 
     }
