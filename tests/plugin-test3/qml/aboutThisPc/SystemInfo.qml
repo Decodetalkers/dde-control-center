@@ -22,7 +22,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.edition
+                text: AboutMyPc.edition
             }
 
         }
@@ -36,7 +36,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.cputype
+                text: AboutMyPc.cputype
             }
 
         }
@@ -50,7 +50,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.processor
+                text: AboutMyPc.processor
             }
 
         }
@@ -64,7 +64,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.memory
+                text: AboutMyPc.memory
             }
 
         }
@@ -78,7 +78,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.graphicsPlatform
+                text: AboutMyPc.graphicsPlatform
             }
 
         }
@@ -92,7 +92,7 @@ GroupBox {
             }
 
             Text {
-                text: BackendObject.kernel
+                text: AboutMyPc.kernel
             }
 
         }

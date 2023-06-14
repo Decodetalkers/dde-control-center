@@ -9,12 +9,12 @@
 
 using Dtk::Core::DDBusInterface;
 
-class BackendObject final : public QObject
+class AboutMyPcBackendObject final : public QObject
 {
     Q_OBJECT
 
 public:
-    static BackendObject *instance();
+    static AboutMyPcBackendObject *instance();
 
     Q_PROPERTY(QString isLaptop READ isLaptop NOTIFY isLaptopChanged)
 
@@ -54,7 +54,7 @@ public:
     void active();
 
 private:
-    explicit BackendObject(QObject *parent = nullptr);
+    explicit AboutMyPcBackendObject(QObject *parent = nullptr);
     void connectToDBus();
 
 signals:

@@ -1,4 +1,4 @@
-#include "BackendObject.h"
+#include "AboutMyPcBackendObject.h"
 
 #include <DSysInfo>
 
@@ -49,17 +49,17 @@ static QString formatCap(qulonglong cap, const int size = 1024, quint8 precision
     return "";
 }
 
-static BackendObject *BACKEND = nullptr;
+static AboutMyPcBackendObject *BACKEND = nullptr;
 
-BackendObject *BackendObject::instance()
+AboutMyPcBackendObject *AboutMyPcBackendObject::instance()
 {
     if (!BACKEND) {
-        BACKEND = new BackendObject;
+        BACKEND = new AboutMyPcBackendObject;
     }
     return BACKEND;
 }
 
-BackendObject::BackendObject(QObject *parent)
+AboutMyPcBackendObject::AboutMyPcBackendObject(QObject *parent)
     : QObject(parent)
     , m_isLaptop(islaptopFileExist())
     , m_edition(std::nullopt)
@@ -74,17 +74,17 @@ BackendObject::BackendObject(QObject *parent)
     connectToDBus();
 }
 
-void BackendObject::connectToDBus()
+void AboutMyPcBackendObject::connectToDBus()
 {
     // NOTE: the signal by DDBusInterface cannot use directorly in qml, because in qml, you need set
     // once, then notify So, you should handle it again
-    connect(this, &BackendObject::StaticHostnameChanged, this, [this](const QString &value) {
+    connect(this, &AboutMyPcBackendObject::StaticHostnameChanged, this, [this](const QString &value) {
         m_staticHostName = value;
         Q_EMIT staticHostnameChanged();
     });
 }
 
-void BackendObject::setStaticHostname(const QString &value)
+void AboutMyPcBackendObject::setStaticHostname(const QString &value)
 {
     if (value == m_staticHostName) {
         return;
@@ -96,7 +96,7 @@ void BackendObject::setStaticHostname(const QString &value)
 
 using Dtk::Core::DSysInfo;
 
-void BackendObject::active()
+void AboutMyPcBackendObject::active()
 {
     m_staticHostName = qvariant_cast<QString>(m_hostname1Inter->property("StaticHostname"));
     Q_EMIT staticHostnameChanged();

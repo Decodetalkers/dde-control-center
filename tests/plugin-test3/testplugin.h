@@ -22,6 +22,7 @@ public:
 
 private:
     ModuleObject *aboutPcModule();
+    ModuleObject *licenseModule();
 };
 
 class QQuickPageModule : public PageModule
@@ -32,9 +33,25 @@ public:
 
     QWidget *page() override;
 
-    void active() override;
-
 private:
     QUrl m_qmlUrl;
+};
+
+class AboutMyPcModule : public QQuickPageModule
+{
+    Q_OBJECT
+public:
+    explicit AboutMyPcModule(QObject *parent = nullptr);
+
+    void active() override;
+};
+
+
+class LicenseBaseModule : public QQuickPageModule
+{
+    Q_OBJECT
+public:
+    explicit LicenseBaseModule(QUrl rootRes, QObject *parent = nullptr);
+    void active() override;
 };
 } // namespace DCC_NAMESPACE

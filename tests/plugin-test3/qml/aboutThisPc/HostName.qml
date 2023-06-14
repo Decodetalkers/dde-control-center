@@ -13,7 +13,7 @@ ColumnLayout {
         visible: !hostname.showedit
 
         Text {
-            text: BackendObject.StaticHostname
+            text: AboutMyPc.StaticHostname
         }
 
         Dtk.Button {
@@ -29,11 +29,11 @@ ColumnLayout {
 
     TextField {
         Layout.alignment: Qt.AlignCenter | Qt.AlignBaseline
-        text: BackendObject.StaticHostname
+        text: AboutMyPc.StaticHostname
         visible: hostname.showedit
         focus: hostname.showedit
         onAccepted: {
-            BackendObject.StaticHostname = text;
+            AboutMyPc.StaticHostname = text;
             hostname.showedit = false;
         }
     }

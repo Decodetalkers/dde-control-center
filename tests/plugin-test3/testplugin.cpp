@@ -8,8 +8,9 @@
 
 // #include "interface/vlistmodule.h"
 
-#include "src/frame/utils.h"
-#include "tests/plugin-test3/BackendObject.h"
+#include "AboutMyPcBackendObject.h"
+#include "LicencesBackendObject.h"
+#include "interface/vlistmodule.h"
 #include "widgets/itemmodule.h"
 
 #include <interface/pagemodule.h>
@@ -27,6 +28,8 @@
 using Dtk::Core::DSysInfo;
 
 using namespace DCC_NAMESPACE;
+
+#define IS_COMMUNITY_SYSTEM (DSysInfo::UosCommunity == DSysInfo::uosEditionType()) // 是否是社区版
 
 static const QString systemCopyright()
 {
@@ -46,6 +49,30 @@ static const QString systemCopyright()
     }
 }
 
+void registerGlobalObjects()
+{
+    qmlRegisterSingletonType<AboutMyPcBackendObject>(
+            "Command.Base",
+            1,
+            0,
+            "AboutMyPc",
+            [](QQmlEngine *, QJSEngine *) -> QObject * {
+                auto bak = AboutMyPcBackendObject::instance();
+                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
+                return bak;
+            });
+    qmlRegisterSingletonType<AboutMyPcBackendObject>(
+            "Command.Base",
+            1,
+            0,
+            "LicenseObject",
+            [](QQmlEngine *, QJSEngine *) -> QObject * {
+                auto bak = LicenseBackendObject::instance();
+                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
+                return bak;
+            });
+}
+
 QString Test2Plugin::name() const
 {
     return QStringLiteral("plugin-test3");
@@ -57,7 +84,7 @@ ModuleObject *Test2Plugin::aboutPcModule()
     aboutPcPage->setName("aboutPc");
     aboutPcPage->setDisplayName(tr("About This Pc"));
 
-    auto module = new QQuickPageModule(QUrl("qrc:/qml/aboutpc.qml"));
+    auto module = new AboutMyPcModule;
     auto bottom = new ItemModule(
             "",
             "",
@@ -84,25 +111,29 @@ ModuleObject *Test2Plugin::aboutPcModule()
     return aboutPcPage;
 }
 
+ModuleObject *Test2Plugin::licenseModule()
+{
+    VListModule *licenseModule = new VListModule(this);
+    licenseModule->setName("agreement");
+    licenseModule->setDisplayName(tr("Agreements and PrivacyPolicy"));
+    auto gnulicense = new LicenseBaseModule(QUrl("qrc:/qml/gnulicense.qml"));
+    gnulicense->setIcon(QIcon::fromTheme("dcc_version"));
+    gnulicense->setName("editionLicense");
+    gnulicense->setDisplayName(tr("Edition License"));
+    licenseModule->appendChild(gnulicense);
+    return licenseModule;
+}
+
 ModuleObject *Test2Plugin::module()
 {
-    qmlRegisterSingletonType<BackendObject>(
-            "Command.Base",
-            1,
-            0,
-            "BackendObject",
-            [](QQmlEngine *, QJSEngine *) -> QObject * {
-                auto bak = BackendObject::instance();
-                QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
-                return bak;
-            });
-
+    registerGlobalObjects();
     auto topPage = new HListModule(this);
     topPage->setIcon(QIcon::fromTheme("preferences-system"));
     topPage->setDescription("Qml Test");
     topPage->setDisplayName("Qml Test");
     topPage->setName("qmltest");
     topPage->appendChild(aboutPcModule());
+    topPage->appendChild(licenseModule());
     return topPage;
 }
 
@@ -122,7 +153,23 @@ QWidget *QQuickPageModule::page()
     return quickwidget;
 }
 
-void QQuickPageModule::active()
+AboutMyPcModule::AboutMyPcModule(QObject *object)
+    : QQuickPageModule(QUrl("qrc:/qml/aboutpc.qml"), object)
 {
-    BackendObject::instance()->active();
+}
+
+void AboutMyPcModule::active()
+{
+
+    AboutMyPcBackendObject::instance()->active();
+}
+
+LicenseBaseModule::LicenseBaseModule(QUrl rootRes, QObject *parent)
+    : QQuickPageModule(rootRes, parent)
+{
+}
+
+void LicenseBaseModule::active()
+{
+    LicenseBackendObject::instance()->active();
 }

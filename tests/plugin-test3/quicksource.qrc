@@ -2,6 +2,7 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/aboutpc.qml</file>
+        <file>qml/gnulicense.qml</file>
         <file>qml/ScrollabelPage.qml</file>
         <file>qml/aboutThisPc/HostName.qml</file>
         <file>qml/aboutThisPc/PcImage.qml</file>
