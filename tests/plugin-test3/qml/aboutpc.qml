@@ -8,8 +8,9 @@ import "aboutThisPc" as AboutThisPc
 
 Page {
     id: root
-
+    height: column.height
     ColumnLayout {
+        id: column
         spacing: 30
         anchors.horizontalCenter: parent.horizontalCenter
 

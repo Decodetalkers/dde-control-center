@@ -7,7 +7,10 @@
 #include "interface/pagemodule.h"
 #include "interface/plugininterface.h"
 
-class Test2Plugin : public DCC_NAMESPACE::PluginInterface
+#include <QUrl>
+
+namespace DCC_NAMESPACE {
+class Test2Plugin : public PluginInterface
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "com.deepin.dde.ControlCenter.test3" FILE "plugin-test.json")
@@ -15,19 +18,23 @@ class Test2Plugin : public DCC_NAMESPACE::PluginInterface
 
 public:
     virtual QString name() const override;
-    virtual DCC_NAMESPACE::ModuleObject *module() override;
+    virtual ModuleObject *module() override;
 
-signals:
-    void updateAll();
+private:
+    ModuleObject *aboutPcModule();
 };
 
-class AboutThisPcModule : public dccV23::PageModule
+class QQuickPageModule : public PageModule
 {
     Q_OBJECT
 public:
-    explicit AboutThisPcModule(QObject *parent = nullptr);
+    explicit QQuickPageModule(QUrl rootRes, QObject *parent = nullptr);
 
     QWidget *page() override;
 
     void active() override;
+
+private:
+    QUrl m_qmlUrl;
 };
+} // namespace DCC_NAMESPACE
