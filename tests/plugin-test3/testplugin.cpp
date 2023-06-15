@@ -78,6 +78,12 @@ QString Test2Plugin::name() const
     return QStringLiteral("plugin-test3");
 }
 
+static QString distributionOrgLogo()
+{
+    static QString logo = DSysInfo::distributionOrgLogo(DSysInfo::Distribution, DSysInfo::Normal);
+    return logo;
+}
+
 ModuleObject *Test2Plugin::aboutPcModule()
 {
     auto aboutPcPage = new PageModule(this);
@@ -92,10 +98,7 @@ ModuleObject *Test2Plugin::aboutPcModule()
                 QWidget *logo = new QWidget;
                 QHBoxLayout *layout = new QHBoxLayout(logo);
                 QLabel *logolabel = new QLabel;
-                logolabel->setPixmap(
-                        QIcon::fromTheme(DSysInfo::distributionOrgLogo(DSysInfo::Distribution,
-                                                                       DSysInfo::Normal))
-                                .pixmap(100, 20));
+                logolabel->setPixmap(QIcon::fromTheme(distributionOrgLogo()).pixmap(100, 20));
                 QLabel *textlabel = new QLabel(systemCopyright());
                 layout->addStretch();
                 layout->addWidget(logolabel);
@@ -121,6 +124,12 @@ ModuleObject *Test2Plugin::licenseModule()
     gnulicense->setName("editionLicense");
     gnulicense->setDisplayName(tr("Edition License"));
     licenseModule->appendChild(gnulicense);
+
+    auto privatelicense = new LicenseBaseModule(QUrl("qrc:/qml/privatelicense.qml"));
+    privatelicense->setIcon(QIcon::fromTheme("dcc_privacy_policy"));
+    privatelicense->setName("privacyPolicy");
+    privatelicense->setDisplayName(tr("Privacy Policy"));
+    licenseModule->appendChild(privatelicense);
     return licenseModule;
 }
 
@@ -160,7 +169,6 @@ AboutMyPcModule::AboutMyPcModule(QObject *object)
 
 void AboutMyPcModule::active()
 {
-
     AboutMyPcBackendObject::instance()->active();
 }
 

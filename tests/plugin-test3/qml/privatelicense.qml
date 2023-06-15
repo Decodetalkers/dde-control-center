@@ -13,13 +13,19 @@ ScrollabelPage {
         anchors.horizontalCenter: parent.horizontalCenter
 
         Text {
+            text: LicenseObject.privateLicenseTitle
             Layout.alignment: Qt.AlignHCenter
-            text: LicenseObject.gnuLicenseTitle
         }
         Text {
-            text: LicenseObject.gnuLicense
+            text: LicenseObject.privateLicense
             wrapMode: Text.Wrap
             Layout.preferredWidth: column.width
+            onLinkHovered: {
+                console.log("hovered")
+            }
+            onLinkActivated: function(link) {
+                Qt.openUrlExternally(link)
+            }
         }
 
     }
