@@ -31,6 +31,9 @@ using namespace DCC_NAMESPACE;
 
 #define IS_COMMUNITY_SYSTEM (DSysInfo::UosCommunity == DSysInfo::uosEditionType()) // 是否是社区版
 
+
+static QQmlEngine *engine;
+
 static const QString systemCopyright()
 {
     const QSettings settings("/etc/deepin-installer.conf", QSettings::IniFormat);
@@ -61,16 +64,21 @@ void registerGlobalObjects()
                 QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
                 return bak;
             });
-    qmlRegisterSingletonType<AboutMyPcBackendObject>(
+    qmlRegisterSingletonType<LicenseBackendObject>(
             "Command.Base",
             1,
             0,
             "LicenseObject",
-            [](QQmlEngine *, QJSEngine *) -> QObject * {
+            [](QQmlEngine *engine, QJSEngine *) -> QObject * {
                 auto bak = LicenseBackendObject::instance();
                 QQmlEngine::setObjectOwnership(bak, QQmlEngine::CppOwnership);
                 return bak;
             });
+}
+//Q_CONSTRUCTOR_FUNCTION(registerGlobalObjects)
+
+Test2Plugin::Test2Plugin()
+{
 }
 
 QString Test2Plugin::name() const
@@ -135,6 +143,8 @@ ModuleObject *Test2Plugin::licenseModule()
 
 ModuleObject *Test2Plugin::module()
 {
+    engine = new QQmlEngine();
+    engine->moveToThread(qApp->thread());
     registerGlobalObjects();
     auto topPage = new HListModule(this);
     topPage->setIcon(QIcon::fromTheme("preferences-system"));
@@ -154,8 +164,11 @@ QQuickPageModule::QQuickPageModule(QUrl rootRes, QObject *parent)
 
 QWidget *QQuickPageModule::page()
 {
-    auto quickwidget = new QQuickWidget;
-    quickwidget->setSource(m_qmlUrl);
+    auto quickwidget = new QQuickWidget(engine, nullptr);
+    quickwidget->moveToThread(engine->thread());
+    {
+        quickwidget->setSource(m_qmlUrl);
+    }
 
     quickwidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     quickwidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);

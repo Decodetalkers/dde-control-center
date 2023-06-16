@@ -7,6 +7,7 @@
 #include "interface/pagemodule.h"
 #include "interface/plugininterface.h"
 
+#include <QQmlEngine>
 #include <QUrl>
 
 namespace DCC_NAMESPACE {
@@ -17,6 +18,7 @@ class Test2Plugin : public PluginInterface
     Q_INTERFACES(DCC_NAMESPACE::PluginInterface)
 
 public:
+    Test2Plugin();
     virtual QString name() const override;
     virtual ModuleObject *module() override;
 
