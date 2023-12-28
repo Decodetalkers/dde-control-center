@@ -11,7 +11,7 @@ ShortcutKey::ShortcutKey(QWidget *parent) : QWidget(parent)
 {
     setAccessibleName("ShortcutKey");
     m_mainLayout = new QHBoxLayout;
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0,0,0,0);
     m_mainLayout->setSpacing(5);
 
     setLayout(m_mainLayout);
@@ -36,7 +36,7 @@ void ShortcutKey::setTextList(const QStringList &list)
     adjustSize();
 }
 
-void ShortcutKey::enterEvent(QEvent *event)
+void ShortcutKey::enterEvent(QEnterEvent *event)
 {
     QWidget::enterEvent(event);
 

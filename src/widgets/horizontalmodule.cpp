@@ -42,7 +42,7 @@ public:
         QObject::connect(w, &QObject::destroyed, q, [this]() { m_mapWidget.clear(); });
 
         m_layout = new QHBoxLayout(w);
-        m_layout->setMargin(0);
+        // m_layout->setMargin(0);
         m_layout->setSpacing(m_spacing);
         if (m_stretchType & HorizontalModule::LeftStretch)
             m_layout->addStretch();

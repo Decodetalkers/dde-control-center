@@ -101,7 +101,7 @@ QWidget *AdapterV20toV23Module::page()
 {
     QWidget *parentWidget = new QWidget();
     m_layout = new QHBoxLayout();
-    m_layout->setMargin(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
     parentWidget->setLayout(m_layout);
     setWidget(0);

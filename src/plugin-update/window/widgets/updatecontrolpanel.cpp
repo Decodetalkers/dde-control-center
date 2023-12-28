@@ -282,7 +282,7 @@ void updateControlPanel::setDatetimeVisible(bool visible)
 void updateControlPanel::initUi()
 {
     QVBoxLayout *titleLay = new QVBoxLayout();
-    titleLay->setMargin(0);
+    titleLay->setContentsMargins(0, 0, 0, 0);
     m_titleLable->setForegroundRole(DPalette::TextTitle);
     m_titleLable->setWordWrap(true);
     DFontSizeManager::instance()->bind(m_titleLable, DFontSizeManager::T6, QFont::DemiBold);

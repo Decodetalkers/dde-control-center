@@ -35,7 +35,7 @@ ShortCutSettingWidget::ShortCutSettingWidget(ShortcutModel *model, QWidget *pare
     systemHead->setTitle(tr("System"));
     systemHead->layout()->setContentsMargins(10, 0, 10, 0);
     m_systemGroup = new SettingsGroup();
-    m_systemGroup->getLayout()->setMargin(0);
+    m_systemGroup->getLayout()->setContentsMargins(0, 0,0,0);
     m_systemGroup->appendItem(systemHead, SettingsGroup::NoneBackground);
 
     SettingsHead *windowHead = new SettingsHead();
@@ -43,7 +43,7 @@ ShortCutSettingWidget::ShortCutSettingWidget(ShortcutModel *model, QWidget *pare
     windowHead->setTitle(tr("Window"));
     windowHead->layout()->setContentsMargins(10, 0, 10, 0);
     m_windowGroup = new SettingsGroup();
-    m_windowGroup->getLayout()->setMargin(0);
+    m_windowGroup->getLayout()->setContentsMargins(0, 0, 0,0);
     m_windowGroup->appendItem(windowHead, SettingsGroup::NoneBackground);
 
     if (DSysInfo::UosServer != DSysInfo::uosType()) {
@@ -79,12 +79,12 @@ ShortCutSettingWidget::ShortCutSettingWidget(ShortcutModel *model, QWidget *pare
 
     QVBoxLayout *vlayout = new QVBoxLayout();
     QHBoxLayout *topLayout = new QHBoxLayout;
-    topLayout->setMargin(0);
+    topLayout->setContentsMargins(0, 0, 0, 0);
     topLayout->setAlignment(Qt::AlignTop);
     topLayout->addWidget(m_searchInput);
     vlayout->addLayout(topLayout);
 
-    vlayout->setMargin(0);
+    vlayout->setContentsMargins(0, 0, 0, 0);
     vlayout->setSpacing(10);
     //vlayout->addSpacing(10);
 

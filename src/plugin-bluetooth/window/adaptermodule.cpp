@@ -107,7 +107,7 @@ void AdapterModule::initBluetoothTitle(DCC_NAMESPACE::SettingsGroup *settingsGrp
 
     settingsGrp->setBackgroundStyle(SettingsGroup::GroupBackground);
     settingsGrp->setContentsMargins(0, 0, 0, 0);
-    settingsGrp->layout()->setMargin(0);
+    //settingsGrp->layout()->setMargin(0);
     settingsGrp->setSpacing(1);
 
     settingsGrp->appendItem(powerSwitch);

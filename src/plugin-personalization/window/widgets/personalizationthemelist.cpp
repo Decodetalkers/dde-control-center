@@ -22,7 +22,7 @@ PersonalizationThemeList::PersonalizationThemeList(const QString &title, QWidget
 {
     setAccessibleName("PersonalizationThemeList");
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     DTitlebar *titleIcon = new DTitlebar();
     titleIcon->setFrameStyle(QFrame::NoFrame);//无边框
     titleIcon->setBackgroundTransparent(true);//透明

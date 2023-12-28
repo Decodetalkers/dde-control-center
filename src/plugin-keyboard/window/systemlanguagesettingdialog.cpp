@@ -59,7 +59,7 @@ SystemLanguageSettingDialog::SystemLanguageSettingDialog(KeyboardModel *model, Q
     listVLayout->addWidget(m_buttonTuple, 0, Qt::AlignBottom);
     listVLayout->setContentsMargins(20, 10, 20, 10);
 
-    mainVLayout->setMargin(0);
+    mainVLayout->setContentsMargins(0, 0, 0, 0);
     mainVLayout->addWidget(titleIcon, Qt::AlignTop | Qt::AlignRight);
     mainVLayout->addWidget(headTitle, Qt::AlignCenter);
     mainVLayout->addLayout(listVLayout);

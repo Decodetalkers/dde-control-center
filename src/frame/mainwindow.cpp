@@ -192,7 +192,6 @@ void MainWindow::initUI()
     setMinimumSize(MainWindowMininumSize);
     setCentralWidget(m_rootModule->activePage());
 
-    layout()->setMargin(0);
     layout()->setSpacing(0);
     layout()->setContentsMargins(ZeroMargins);
 
@@ -421,7 +420,7 @@ void MainWindow::clearPage(QWidget *const widget)
 
 void MainWindow::configLayout(QBoxLayout *const layout)
 {
-    layout->setMargin(0);
+    layout->setContentsMargins(ZeroMargins);
     layout->setSpacing(0);
 }
 

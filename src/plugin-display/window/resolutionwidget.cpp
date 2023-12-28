@@ -6,12 +6,15 @@
 #include "resolutionwidget.h"
 #include "operation/displaymodel.h"
 
+#include <DGuiApplicationHelper>
+
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <DApplicationHelper>
 #include <QLabel>
 #include <QStyleOption>
 #include <QStandardItemModel>
+
+DGUI_USE_NAMESPACE
 
 DWIDGET_USE_NAMESPACE
 using namespace DCC_NAMESPACE;
@@ -161,7 +164,7 @@ ResolutionWidget::ResolutionWidget(int comboxWidth, QWidget *parent)
     SettingsGroup *grp = new SettingsGroup(nullptr, SettingsGroup::GroupBackground);
     grp->getLayout()->setContentsMargins(0, 0, 0, 0);
     grp->setContentsMargins(0, 0, 0, 0);
-    grp->layout()->setMargin(0);
+    grp->layout()->setContentsMargins(0, 0, 0, 0);
     grp->appendItem(resolutionItem);
     grp->appendItem(m_resizeDesktopItem);
 

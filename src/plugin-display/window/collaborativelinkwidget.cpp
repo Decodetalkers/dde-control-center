@@ -56,7 +56,7 @@ CollaborativeLinkWidget::~CollaborativeLinkWidget()
 
 void CollaborativeLinkWidget::initUI()
 {
-    m_centralLayout->setMargin(0);
+    m_centralLayout->setContentsMargins(0, 0, 0, 0);
     m_centralLayout->addWidget(m_deviceTitle);
 
     QHBoxLayout *switchLayout = new QHBoxLayout(m_deviceSwitchItem);

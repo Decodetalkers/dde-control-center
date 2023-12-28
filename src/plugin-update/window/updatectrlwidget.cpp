@@ -177,7 +177,7 @@ UpdateCtrlWidget::UpdateCtrlWidget(UpdateModel *model, QWidget *parent)
     updateTitleHLay->addWidget(m_fullUpdateBtn);
 
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addSpacing(10);
     layout->addWidget(m_versrionTip, 0, Qt::AlignHCenter);

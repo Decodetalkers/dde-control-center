@@ -9,9 +9,6 @@
 #include "interface/namespace.h"
 #include "operation/monitor.h"
 
-#include <math.h>
-#include <float.h>
-
 #include <DGraphicsView>
 
 class QGraphicsScene;
@@ -51,7 +48,7 @@ private Q_SLOTS:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
-    void enterEvent(QEvent *) override;
+    void enterEvent(QEnterEvent *) override;
     void leaveEvent(QEvent *) override;
     void paintEvent(QPaintEvent *event) override;
 

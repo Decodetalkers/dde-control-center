@@ -9,12 +9,12 @@
 #include <QLabel>
 #include <QDebug>
 
-#include <DApplicationHelper>
 #include <DPaletteHelper>
 #include <DIconButton>
 #include <DLineEdit>
 #include <DStyleHelper>
 #include <DIconTheme>
+#include <DGuiApplicationHelper>
 
 using namespace DCC_NAMESPACE;
 
@@ -158,7 +158,7 @@ void AuthenticationInfoItem::showAlertMessage(const QString &errMsg)
     m_editTitle->lineEdit()->selectAll();
 }
 
-void AuthenticationInfoItem::enterEvent(QEvent *event)
+void AuthenticationInfoItem::enterEvent(QEnterEvent *event)
 {
     DPalette pa = DPaletteHelper::instance()->palette(this);
     DStyleHelper styleHelper;
@@ -201,7 +201,7 @@ AuthenticationLinkButtonItem::AuthenticationLinkButtonItem(QWidget *parent)
     });
 }
 
-void AuthenticationLinkButtonItem::enterEvent(QEvent *event)
+void AuthenticationLinkButtonItem::enterEvent(QEnterEvent *event)
 {
     DPalette pa = DPaletteHelper::instance()->palette(this);
     DStyleHelper styleHelper;

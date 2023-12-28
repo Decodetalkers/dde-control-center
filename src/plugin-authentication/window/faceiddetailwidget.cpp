@@ -6,10 +6,10 @@
 #include "widgets/face/addfaceinfodialog.h"
 #include "charamangermodel.h"
 
-#include <DApplicationHelper>
 #include <DFontSizeManager>
 #include <DTipLabel>
 #include <DIconTheme>
+#include <DGuiApplicationHelper>
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -49,7 +49,7 @@ void FaceidDetailWidget::initFaceidShow()
     m_mainContentLayout->setContentsMargins(0, 10, 0, 0);
 
     m_faceWidget->setContentsMargins(0, 0, 0, 0);
-    m_faceWidget->layout()->setMargin(0);
+    m_faceWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     setLayout(m_mainContentLayout);
     setFocusPolicy(Qt::FocusPolicy::ClickFocus);

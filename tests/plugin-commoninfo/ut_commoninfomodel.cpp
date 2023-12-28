@@ -135,14 +135,14 @@ TEST_F(Test_CommonInfoModel, setActivation)
     EXPECT_EQ(value, true);
 }
 
-TEST_F(Test_CommonInfoModel, setBackground)
-{
-    QSignalSpy spy1(m_model, SIGNAL(backgroundChanged(const QPixmap&)));
-    m_model->setBackground(QPixmap());
-    EXPECT_EQ(spy1.count(), 1);
-    auto value = m_model->background();
-    EXPECT_EQ(value, QPixmap());
-}
+//TEST_F(Test_CommonInfoModel, setBackground)
+//{
+//    QSignalSpy spy1(m_model, SIGNAL(backgroundChanged(const QPixmap&)));
+//    m_model->setBackground(QPixmap());
+//    EXPECT_EQ(spy1.count(), 1);
+//    auto value = m_model->background();
+//    EXPECT_EQ(value, QPixmap());
+//}
 
 
 

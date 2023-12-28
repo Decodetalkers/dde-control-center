@@ -16,6 +16,8 @@
 #include <QKeyEvent>
 #include <QToolButton>
 #include <QValidator>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 
 DGUI_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
@@ -45,8 +47,8 @@ bool HostNameEdit::eventFilter(QObject *obj, QEvent *event)
 
         if (e->key() >= 0x20 && e->key() <= 0x0a1) {
             // 首先判断键盘事件带的字符串是否为符合"^[A-Za-z0-9-]+$"规则
-            QRegExp regx("^[A-Za-z0-9-]+$");
-            QRegExpValidator v(regx);
+            QRegularExpression regx("^[A-Za-z0-9-]+$");
+            QRegularExpressionValidator v(regx);
             QString text = e->text();
             int pos = 0;
             if (QValidator::Acceptable != v.validate(text, pos)) {
@@ -109,7 +111,7 @@ void HostNameItem::initUI()
     // 添加主机名称
     QVBoxLayout *hostNameLayout = new QVBoxLayout(this);
     hostNameLayout->setSpacing(0);
-    hostNameLayout->setMargin(0);
+    //hostNameLayout->setMargin(0);
     m_computerLabel->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     m_computerLabel->setPixmap(DIconTheme::findQIcon(m_iconName).pixmap(200, 200));
 
@@ -122,8 +124,8 @@ void HostNameItem::initUI()
     m_hostNameBtn->setIconSize(QSize(12, 12));
     m_hostNameBtn->setFixedSize(36, 36);
 
-    QRegExp regx("^[A-Za-z0-9-]{0,64}$");
-    QValidator *validator = new QRegExpValidator(regx, m_hostNameLineEdit);
+    QRegularExpression regx("^[A-Za-z0-9-]{0,64}$");
+    QValidator *validator = new QRegularExpressionValidator(regx, m_hostNameLineEdit);
     m_hostNameLineEdit->lineEdit()->setValidator(validator);
     m_hostNameLineEdit->setAlertMessageAlignment(Qt::AlignHCenter);
     m_hostNameLineEdit->lineEdit()->setAlignment(Qt::AlignHCenter);

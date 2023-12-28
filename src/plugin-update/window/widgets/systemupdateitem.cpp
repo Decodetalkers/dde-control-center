@@ -22,7 +22,7 @@ SystemUpdateItem::SystemUpdateItem(QWidget *parent)
     setClassifyUpdateType(SystemUpdate);
 
     QVBoxLayout *lineLay = new QVBoxLayout;
-    lineLay->setMargin(0);
+    lineLay->setContentsMargins(0, 0, 0, 0);
     lineLay->addSpacing(10);
     lineLay->addWidget(m_line);
     m_lineWidget->setLayout(lineLay);

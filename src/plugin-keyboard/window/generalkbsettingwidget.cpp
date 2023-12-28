@@ -89,7 +89,7 @@ GeneralKBSettingWidget::GeneralKBSettingWidget(KeyboardModel *model, QWidget *pa
     m_generalSettingsGrp->appendItem(m_upper);
 
     m_contentLayout = new QVBoxLayout();
-    m_contentLayout->setMargin(0);
+    m_contentLayout->setContentsMargins(0,0,0,0);
     m_contentLayout->addWidget(m_generalSettingsGrp);
     m_contentLayout->addStretch();
 

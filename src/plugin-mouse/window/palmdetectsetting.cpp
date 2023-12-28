@@ -68,7 +68,7 @@ PalmDetectSetting::PalmDetectSetting(QWidget *parent)
     sliderGrp->appendItem(m_pressureSlider);
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setMargin(0);
+    //layout->setMargin(0);
     layout->setSpacing(0);
 
     layout->addWidget(detectSwitchGrp);

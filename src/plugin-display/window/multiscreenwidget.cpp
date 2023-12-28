@@ -21,7 +21,6 @@
 #include <QComboBox>
 #include <QTimer>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QKeyEvent>
 #include <DMainWindow>
 
@@ -107,8 +106,8 @@ MultiScreenWidget::MultiScreenWidget(QWidget *parent)
 
     setLayout(m_contentLayout);
 
-    QDesktopWidget *desktopwidget = QApplication::desktop();
-    connect(desktopwidget,SIGNAL(workAreaResized(int)),this,SLOT(onResetSecondaryScreenDlg()));
+    //QDesktopWidget *desktopwidget = QApplication::desktop();
+    //connect(desktopwidget,SIGNAL(workAreaResized(int)),this,SLOT(onResetSecondaryScreenDlg()));
 
     m_resetSecondaryScreenDlgTimer->setSingleShot(true);
     m_resetSecondaryScreenDlgTimer->setInterval(100);

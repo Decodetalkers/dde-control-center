@@ -4,7 +4,6 @@
 
 #include "faceinfowidget.h"
 
-#include <DApplicationHelper>
 #include <DPlatformTheme>
 
 #include <QDBusUnixFileDescriptor>
@@ -46,7 +45,7 @@ void FaceInfoWidget::initWidget()
     mainLayout->setAlignment(Qt::AlignHCenter);
 
     mainLayout->addWidget(m_faceLable, 0, Qt::AlignHCenter);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     setLayout(mainLayout);
 }

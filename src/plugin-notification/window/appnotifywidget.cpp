@@ -40,7 +40,7 @@ void AppNotifyWidget::initUI()
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setContentsMargins(10, 10, 10, 10);
 
     setLayout(mainLayout);
@@ -65,7 +65,7 @@ void AppNotifyWidget::initUI()
 
     m_settingsGrp = new SettingsGroup(nullptr, SettingsGroup::GroupBackground);
     m_settingsGrp->setContentsMargins(0, 0, 0, 0);
-    m_settingsGrp->layout()->setMargin(0);
+    m_settingsGrp->layout()->setContentsMargins(0, 0, 0, 0);
     m_settingsGrp->setSpacing(1);
 
     m_itemNotifySound = new NotificationItem;

@@ -142,7 +142,7 @@ void CooperationSettingsDialog::initWidget()
     m_mainLayout->addWidget(m_buttonTuple);
     m_mainLayout->addSpacing(10);
 
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
     m_mainLayout->setSpacing(0);
     m_mainLayout->setContentsMargins(10, 0, 10, 0);
     setLayout(m_mainLayout);

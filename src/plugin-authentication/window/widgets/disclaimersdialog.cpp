@@ -92,7 +92,7 @@ void DisclaimersDialog::initWidget(DisclaimersObj state)
 
     m_mainLayout->addWidget(titleIcon, Qt::AlignTop | Qt::AlignRight);
     m_mainLayout->addSpacing(10);
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
     m_mainLayout->addWidget(scrollArea, 0, Qt::AlignHCenter);
     m_mainLayout->setSpacing(5);
     m_mainLayout->addLayout(btnLayout);

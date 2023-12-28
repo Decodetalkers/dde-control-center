@@ -52,7 +52,7 @@ UserExperienceProgramWidget::UserExperienceProgramWidget(QWidget *parent)
         QDesktopServices::openUrl(QUrl(link));
     });
 
-    vBoxLayout->setMargin(0);
+    //vBoxLayout->setMargin(0);
     vBoxLayout->setContentsMargins(0, 10, 0, 10);
     vBoxLayout->setSpacing(0);
     vBoxLayout->addWidget(m_joinUeProgram);

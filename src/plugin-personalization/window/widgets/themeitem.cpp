@@ -18,7 +18,7 @@ ThemeItem::ThemeItem(bool titleBelowPic, QWidget *parent)
     , m_imgBtn(nullptr)
 {
     m_mainLayout = new  QVBoxLayout();
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
 
     m_title = new QLabel(this);
     m_itemPic = new ThemeItemPic(this);

@@ -33,7 +33,7 @@ TitleEdit::TitleEdit(QWidget *parent)
     editWidget->setIcon(DIconTheme::findQIcon("dcc_edit"));
     mainlayout->addWidget(editWidget);
     mainlayout->addStretch();
-    mainlayout->setMargin(0);
+    // mainlayout->setMargin(0);
     mainlayout->setSpacing(0);
     setLayout(mainlayout);
 

@@ -196,7 +196,7 @@ void UpdateWorker::licenseStateChangeSlot()
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>();
     connect(watcher, &QFutureWatcher<void>::finished, watcher, &QFutureWatcher<void>::deleteLater);
 
-    QFuture<void> future = QtConcurrent::run(this, &UpdateWorker::getLicenseState);
+    QFuture<void> future = QtConcurrent::run([this] {this->getLicenseState();});
     watcher->setFuture(future);
 }
 

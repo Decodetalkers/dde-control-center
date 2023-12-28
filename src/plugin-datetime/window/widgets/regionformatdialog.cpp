@@ -40,12 +40,12 @@ RegionFormatDialog::RegionFormatDialog(DatetimeModel *datetimeModel, QWidget *pa
 
     QVBoxLayout *mainVLayout = new QVBoxLayout();
     mainVLayout->setSpacing(0);
-    mainVLayout->setMargin(0);
+    mainVLayout->setContentsMargins(0,0,0,0);
 
     QWidget *topWidget = new QWidget;
     QHBoxLayout *topHLayout = new QHBoxLayout(topWidget);
     topHLayout->setSpacing(0);
-    topHLayout->setMargin(0);
+    topHLayout->setContentsMargins(0,0,0,0);
 
     DFrame *leftFrame = new DFrame;
     leftFrame->setFixedSize(344, 520);
@@ -63,7 +63,7 @@ RegionFormatDialog::RegionFormatDialog(DatetimeModel *datetimeModel, QWidget *pa
 
     QVBoxLayout *leftVLayout = new QVBoxLayout(leftFrame);
     leftVLayout->setSpacing(0);
-    leftVLayout->setMargin(10);
+    leftVLayout->setContentsMargins(10, 10, 10, 10);
     leftVLayout->addWidget(searchEdit);
     leftVLayout->addSpacing(10);
     leftVLayout->addWidget(m_regionListView);
@@ -77,7 +77,7 @@ RegionFormatDialog::RegionFormatDialog(DatetimeModel *datetimeModel, QWidget *pa
     DFrame *formatContentFrame = new DFrame;
     formatContentFrame->setBackgroundRole(DPalette::ItemBackground);
     QVBoxLayout *formatLayout = new QVBoxLayout(formatContentFrame);
-    formatLayout->setMargin(0);
+    formatLayout->setContentsMargins(0,0,0,0);
 
     m_dayLabel = addFormatItem(formatContentFrame, tr("First of day"), "Monday");
     m_shortDateLabel = addFormatItem(formatContentFrame, tr("Short date"), "2023.10.01");
@@ -90,7 +90,7 @@ RegionFormatDialog::RegionFormatDialog(DatetimeModel *datetimeModel, QWidget *pa
 
     QVBoxLayout *rightLayout = new QVBoxLayout(rightFrame);
     rightLayout->setSpacing(0);
-    rightLayout->setMargin(10);
+    rightLayout->setContentsMargins(10, 10, 10, 10);
     rightLayout->addWidget(titleLabel);
     rightLayout->addSpacing(12);
     rightLayout->addWidget(formatContentFrame);
@@ -99,7 +99,7 @@ RegionFormatDialog::RegionFormatDialog(DatetimeModel *datetimeModel, QWidget *pa
     QWidget *buttonsWidget = new QWidget;
     QHBoxLayout *bHLayout = new QHBoxLayout(buttonsWidget);
     bHLayout->setSpacing(0);
-    bHLayout->setMargin(0);
+    bHLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *cancelBtn = new QPushButton(tr("Cancel"));
     cancelBtn->setFixedSize(200, 36);
     m_saveBtn = new DSuggestButton(tr("Save"));

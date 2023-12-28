@@ -81,7 +81,7 @@ void SettingsItem::paintEvent(QPaintEvent *event)
     return QFrame::paintEvent(event);
 }
 
-void SettingsItem::enterEvent(QEvent *event)
+void SettingsItem::enterEvent(QEnterEvent *event)
 {
     Q_UNUSED(event)
     m_hover = true;

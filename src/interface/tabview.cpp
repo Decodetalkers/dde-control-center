@@ -9,7 +9,7 @@
 #include <QModelIndex>
 #include <QApplication>
 
-#include <DApplicationHelper>
+#include <DPaletteHelper>
 #include <DPalette>
 #include <DStyleHelper>
 #include <DStyle>
@@ -78,7 +78,7 @@ public:
         DStyleOptionButtonBoxButton opt;
 
         QSize emptySZ = fm.size(Qt::TextShowMnemonic, QStringLiteral("XXXX"));
-        emptySZ = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, emptySZ, q).expandedTo(QApplication::globalStrut()));
+        emptySZ = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, emptySZ, q));
         for (int i = 0; i < model->rowCount(); i++) {
             QString s(model->data(model->index(i, 0)).toString());
             QSize sz;
@@ -86,7 +86,7 @@ public:
                 sz = emptySZ;
             } else {
                 sz = fm.size(Qt::TextShowMnemonic, s);
-                sz = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, sz, q).expandedTo(QApplication::globalStrut()));
+                sz = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, sz, q));
             }
             totalWidth += sz.width() + 14;
             m_itemX.append(totalWidth);
@@ -212,7 +212,7 @@ TabView::TabView(QWidget *parent)
     QFontMetrics fm = fontMetrics();
     QSize emptySZ = fm.size(Qt::TextShowMnemonic, QStringLiteral("XXXX"));
     DStyleOptionButtonBoxButton opt;
-    emptySZ = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, emptySZ, this).expandedTo(QApplication::globalStrut()));
+    emptySZ = (dstyle.sizeFromContents(DStyle::CT_ButtonBoxButton, &opt, emptySZ, this));
     setFixedHeight(emptySZ.height() - 5);
 
     viewport()->setAutoFillBackground(false);
@@ -437,7 +437,8 @@ void TabView::setSelection([[maybe_unused]] const QRect &rect, [[maybe_unused]] 
 void TabView::paintEvent(QPaintEvent *e)
 {
     Q_D(const TabView);
-    QStyleOptionViewItem option = viewOptions();
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
     QPainter painter(viewport());
 
     const QVector<QModelIndex> toBeRendered = d->intersectingSet(e->rect().translated(horizontalOffset(), verticalOffset()));

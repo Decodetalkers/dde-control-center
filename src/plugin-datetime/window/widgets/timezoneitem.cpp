@@ -21,7 +21,7 @@ TimezoneItem::TimezoneItem(QFrame *parent)
     m_clock->setAccessibleName("TimezoneItem_clock");
     addBackground();
     QVBoxLayout *vlayout = new QVBoxLayout();
-    vlayout->setMargin(0);
+    vlayout->setContentsMargins(0, 0, 0, 0);
     vlayout->setSpacing(0);
 
     m_city->setObjectName("DCC-Datetime-TimezoneItem-Label");
@@ -44,7 +44,7 @@ TimezoneItem::TimezoneItem(QFrame *parent)
     m_clock->setFixedSize(QSize(48, 48));
 
     QHBoxLayout *hlayout = new QHBoxLayout();
-    hlayout->setMargin(0);
+    hlayout->setContentsMargins(0, 0, 0, 0);
     hlayout->setSpacing(0);
     hlayout->setContentsMargins(14, 0, 10, 0); // TODO: 设计沟通设置 14
     hlayout->addLayout(vlayout);

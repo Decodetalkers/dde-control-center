@@ -51,7 +51,7 @@ void UpdateSettingItem::initUi()
     widget->setLayout(vboxLay);
 
     QHBoxLayout *main = new QHBoxLayout;
-    main->setMargin(0);
+    main->setContentsMargins(0, 0, 0, 0);
     main->setSpacing(0);
     main->setContentsMargins(10, 10, 0, 0);
     m_settingsGroup->appendItem(m_controlWidget);

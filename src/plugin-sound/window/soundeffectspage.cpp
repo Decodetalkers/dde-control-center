@@ -7,6 +7,7 @@
 #include "widgets/dcclistview.h"
 #include "widgets/switchwidget.h"
 #include "widgets/titlelabel.h"
+#include <qsoundeffect.h>
 
 #include <DIconButton>
 #include <DListView>
@@ -15,7 +16,7 @@
 #include <QLabel>
 #include <QListView>
 #include <QScroller>
-#include <QSound>
+#include <QSoundEffect>
 #include <QStandardItem>
 #include <QStandardItemModel>
 #include <QTimer>
@@ -103,7 +104,8 @@ void SoundEffectsPage::startPlay(const QModelIndex &index)
     m_playIdx = index;
 
     auto eff = m_model->soundEffectMap()[index.row()].second;
-    m_sound.reset(new QSound(m_model->soundEffectPathByType(eff)));
+    m_sound.reset(new QSoundEffect());
+    m_sound->setSource(m_model->soundEffectPathByType(eff));
     m_sound->stop();
     m_sound->play();
 

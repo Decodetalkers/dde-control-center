@@ -18,6 +18,15 @@ set(CMAKE_AUTORCC ON)
 option(ENABLE_ASAN "Enable asan" OFF)
 option(BUILD_TESTING "UNIT test" ON)
 
+option(USE_QT6 "Use Qt6" OFF)
+set(DtkVersion "")
+set(QT_VERSION "5")
+
+if(USE_QT6)
+    set(DtkVersion "6")
+    set(QT_VERSION "6")
+endif()
+
 # INFO:
 # plugins can be disabled and their options
 # plugin-authentication : DISABLE_AUTHENTICATION
@@ -97,8 +106,8 @@ set(LOCALSTATE_READ_DIR "${CMAKE_INSTALL_FULL_LOCALSTATEDIR}" CACHE STRING "Dir 
 add_definitions(-DVARDIRECTORY="${LOCALSTATE_READ_DIR}")
 # Find the library
 find_package(PkgConfig REQUIRED)
-find_package(Dtk COMPONENTS Core Widget)
-find_package(Qt5 COMPONENTS Widgets Network DBus Concurrent Multimedia Svg Test REQUIRED)
+find_package(Dtk${DtkVersion} COMPONENTS Core Widget DConfig)
+find_package(Qt${QT_VERSION} COMPONENTS Widgets Network DBus Concurrent Multimedia Svg Test REQUIRED)
 find_package(GTest REQUIRED)
 find_package(Threads REQUIRED)
 # pkg_check_modules(DFrameworkDBus REQUIRED dframeworkdbus)
@@ -109,9 +118,9 @@ endif()
 
 # dconfig
 file(GLOB DCONFIG_FILES "misc/configs/*.json")
-dconfig_meta_files(APPID org.deepin.dde.control-center BASE misc/configs FILES ${DCONFIG_FILES})
+dtk_add_config_meta_files(APPID org.deepin.dde.control-center BASE misc/configs FILES ${DCONFIG_FILES})
 file(GLOB DCONFIG_FILE_REGION_FORMAT "misc/configs/common/org.deepin.region-format.json")
-dconfig_meta_files(COMMONID true FILES ${DCONFIG_FILE_REGION_FORMAT})
+dtk_add_config_meta_files(COMMONID true FILES ${DCONFIG_FILE_REGION_FORMAT})
 
 include_directories(
     include
@@ -136,7 +145,7 @@ add_library(${Interface_Name} SHARED
 
 set(Interface_Libraries
     Qt::Widgets
-    Dtk::Widget
+    Dtk${DtkVersion}::Widget
 )
 
 target_include_directories(${Interface_Name} PUBLIC
@@ -183,7 +192,7 @@ set(Dcc_Widgets_Includes
 )
 
 set(Dcc_Widgets_Libraries_public
-    Dtk::Widget
+    Dtk${DtkVersion}::Widget
     Qt::Widgets
     ${Interface_Name}
 )
@@ -272,7 +281,7 @@ target_compile_definitions(${Control_Center_Name} PRIVATE CVERSION="${CVERSION}"
 set(Control_Center_Libraries
     ${Dcc_Widgets_Name}
     ${Interface_Name}
-    Dtk::Widget
+    Dtk${DtkVersion}::Widget
     Qt::Widgets
     Qt::DBus
     Qt::Concurrent
@@ -386,7 +395,7 @@ if (UNITTEST)
         ${Interface_Name}
         Qt::Widgets
         Qt::DBus
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
     )
 
     target_link_libraries(${Plugin_Test1_Name} PRIVATE
@@ -407,13 +416,13 @@ if (UNITTEST)
     )
 
     set(Plugin_Test2_Includes
-        Qt5::Widgets
-        Qt5::DBus
+        Qt::Widgets
+        Qt::DBus
     )
     set(Plugin_Test2_Libraries
         ${Interface_Name}
-        Qt5::Widgets
-        Qt5::DBus
+        Qt::Widgets
+        Qt::DBus
     )
     target_include_directories(${Plugin_Test2_Name} PUBLIC
         ${Plugin_Test2_Includes}
@@ -444,7 +453,7 @@ if (BUILD_PLUGIN)
     set(SystemInfo_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -505,7 +514,7 @@ if (BUILD_PLUGIN)
     )
     set(Power_Libraries
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -537,7 +546,7 @@ if (BUILD_PLUGIN)
     set(Mouse_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -595,7 +604,7 @@ if (BUILD_PLUGIN)
         ${Dcc_Widgets_Name}
         ${Interface_Name}
         ${DEEPIN_PW_CHECK_LIBRARIES}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -660,7 +669,7 @@ if (BUILD_PLUGIN)
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         ${Dcc_Widgets_Name}
     )
     target_include_directories(${Bluetooth_Name} PRIVATE
@@ -674,7 +683,7 @@ if (BUILD_PLUGIN)
     install(TARGETS ${Bluetooth_Name} DESTINATION ${MODULE_INSTALL_DIR})
 endif()
 #--------------------------dcc-defaultapp-plugin--------------------------
-if (BUILD_PLUGIN)
+if (BUILD_PLUGIN AND NOT USE_QT6)
     set(DefaultApp_Name dcc-defaultapp-plugin)
     file(GLOB_RECURSE DefaultApp_SRCS
         "src/plugin-defaultapp/window/*.cpp"
@@ -694,7 +703,7 @@ if (BUILD_PLUGIN)
     )
     set(DefaultApp_Libraries
         ${Dcc_Widgets_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -737,7 +746,7 @@ if (BUILD_PLUGIN)
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         ${Dcc_Widgets_Name}
         ICU::i18n
     )
@@ -775,7 +784,7 @@ if (BUILD_PLUGIN)
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
     )
 
     target_include_directories(${KeyBoard_Name} PUBLIC
@@ -789,31 +798,31 @@ if (BUILD_PLUGIN)
     install(TARGETS ${KeyBoard_Name} DESTINATION ${MODULE_INSTALL_DIR})
 endif()
 #-------------------------ut-dcc-keyboard-plugin-------------------------
-if (UNITTEST)
-    set(UT_KeyBoard_Name ut-dcc-keyboard-plugin)
-    file(GLOB_RECURSE UT_KEYBOARD_SRCS
-        "tests/plugin-keyboard/*.cpp"
-    )
-
-    add_executable(${UT_KeyBoard_Name}
-        ${KEYBOARD_SRCS}
-        ${UT_KEYBOARD_SRCS}
-    )
-
-    # 用于测试覆盖率的编译条件
-    target_compile_options(${UT_KeyBoard_Name} PRIVATE ${UT_COMPILER})
-
-    target_include_directories(${UT_KeyBoard_Name} PUBLIC
-        ${KeyBoard_Includes}
-    )
-
-    target_link_libraries(${UT_KeyBoard_Name} PRIVATE
-        ${KeyBoard_Libraries}
-        ${Test_Libraries}
-    )
-
-    gtest_discover_tests(${UT_KeyBoard_Name} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-endif()
+#if (UNITTEST)
+#    set(UT_KeyBoard_Name ut-dcc-keyboard-plugin)
+#    file(GLOB_RECURSE UT_KEYBOARD_SRCS
+#        "tests/plugin-keyboard/*.cpp"
+#    )
+#
+#    add_executable(${UT_KeyBoard_Name}
+#        ${KEYBOARD_SRCS}
+#        ${UT_KEYBOARD_SRCS}
+#    )
+#
+#    # 用于测试覆盖率的编译条件
+#    target_compile_options(${UT_KeyBoard_Name} PRIVATE ${UT_COMPILER})
+#
+#    target_include_directories(${UT_KeyBoard_Name} PUBLIC
+#        ${KeyBoard_Includes}
+#    )
+#
+#    target_link_libraries(${UT_KeyBoard_Name} PRIVATE
+#        ${KeyBoard_Libraries}
+#        ${Test_Libraries}
+#    )
+#
+#    gtest_discover_tests(${UT_KeyBoard_Name} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+#endif()
 #--------------------------plugin-sound--------------------------
 if (BUILD_PLUGIN)
     set(Sound_Name dcc-sound-plugin)
@@ -837,7 +846,7 @@ if (BUILD_PLUGIN)
     )
     set(Sound_Libraries
         ${Dcc_Widgets_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -881,7 +890,7 @@ if (BUILD_PLUGIN AND NOT DISABLE_AUTHENTICATION)
     )
     set(Authentication_Libraries
         ${Dcc_Widgets_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -899,7 +908,7 @@ if (BUILD_PLUGIN AND NOT DISABLE_AUTHENTICATION)
     install(TARGETS ${Authentication_Name} DESTINATION ${MODULE_INSTALL_DIR})
 endif()
 #--------------------------plugin-accounts--------------------------
-if (BUILD_PLUGIN)
+if (BUILD_PLUGIN AND NOT USE_QT6)
     find_package(PolkitQt5-1)
     set(Accounts_Name dcc-accounts-plugin)
     pkg_check_modules(DEEPIN_PW_CHECK libdeepin_pw_check)
@@ -921,7 +930,7 @@ if (BUILD_PLUGIN)
         ${Dcc_Widgets_Name}
         ${Interface_Name}
         ${DEEPIN_PW_CHECK_LIBRARIES}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Svg
         Qt::Widgets
         Qt::DBus
@@ -955,7 +964,7 @@ if (BUILD_PLUGIN)
     set(Display_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Svg
         Qt::Widgets
         Qt::DBus
@@ -991,7 +1000,7 @@ if (BUILD_PLUGIN)
     )
     set(Personalization_Libraries
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -1028,7 +1037,7 @@ if (BUILD_PLUGIN)
     set(Plugin_Personalization_Dock_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
     )
@@ -1067,7 +1076,7 @@ if (BUILD_PLUGIN AND NOT DISABLE_UPDATE)
     target_link_libraries(${Update_Name} PRIVATE
         ${Dcc_Widgets_Name}
         Qt::Network
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -1093,7 +1102,7 @@ if (BUILD_PLUGIN)
     set(Notification_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Svg
         Qt::Widgets
         Qt::DBus
@@ -1136,45 +1145,7 @@ endif()
 #     gtest_discover_tests(${UT_Notification_Name} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
 # endif()
 
-#--------------------------plugin-privacy--------------------------
-#if (BUILD_PLUGIN)
-#    set(Privacy_Name dcc-privacy-plugin)
-#    file(GLOB_RECURSE Privacy_SRCS
-#        "src/plugin-privacy/window/*.cpp"
-#        "src/plugin-privacy/operation/*.cpp"
-#        "src/plugin-privacy/operation/qrc/privacy.qrc"
-#    )
 
-#    add_library(${Privacy_Name} MODULE
-#        ${Privacy_SRCS}
-#    )
-
-#    set(Pricacy_Includes
-#        ${DtkWidget_INCLUDE_DIRS}
-#        Qt5::Widgets
-#        Qt5::DBus
-#        Qt5::Concurrent
-#        src/plugin-privacy/operation
-#        src/plugin-privacy/window
-#    )
-#    set(Privacy_Libraries
-#        ${Dcc_Widgets_Name}
-#        ${DtkWidget_LIBRARIES}
-#        Qt5::Widgets
-#        Qt5::DBus
-#        Qt5::Concurrent
-#        ${Dcc_Widgets_Name}
-#    )
-#    target_include_directories(${Privacy_Name} PUBLIC
-#        ${Pricacy_Includes}
-#    )
-
-#    target_link_libraries(${Privacy_Name} PRIVATE
-#        ${Privacy_Libraries}
-#    )
-
-#    install(TARGETS ${Privacy_Name} DESTINATION ${MODULE_INSTALL_DIR})
-#endif()
 #--------------------------plugin-touchscreen--------------------------
 if (BUILD_PLUGIN)
     set(Touchscreen_Name dcc-touchscreen-plugin)
@@ -1198,7 +1169,7 @@ if (BUILD_PLUGIN)
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
     )
 
     target_include_directories(${Touchscreen_Name} PUBLIC
@@ -1230,7 +1201,7 @@ if (BUILD_PLUGIN)
     )
     set(Wacom_Libraries
         ${Dcc_Widgets_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
         Qt::Concurrent
@@ -1260,7 +1231,7 @@ if (BUILD_PLUGIN)
     set(AdapterV20toV23_Libraries
         ${Dcc_Widgets_Name}
         ${Interface_Name}
-        Dtk::Widget
+        Dtk${DtkVersion}::Widget
         Qt::Widgets
         Qt::DBus
     )

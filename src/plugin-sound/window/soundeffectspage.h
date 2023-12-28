@@ -19,7 +19,7 @@ DWIDGET_USE_NAMESPACE
 QT_BEGIN_NAMESPACE
 class QStandardItemModel;
 class QVBoxLayout;
-class QSound;
+class QSoundEffect;
 QT_END_NAMESPACE
 
 DWIDGET_BEGIN_NAMESPACE
@@ -55,7 +55,7 @@ private:
     SoundModel *m_model{nullptr};
     DTK_WIDGET_NAMESPACE::DListView *m_effectList{nullptr};
     QStandardItemModel *m_listModel{nullptr};
-    QScopedPointer<QSound> m_sound;
+    QScopedPointer<QSoundEffect> m_sound;
     QModelIndex m_playIdx;
     QTimer *m_aniTimer{nullptr};
     int m_aniDuration{0};

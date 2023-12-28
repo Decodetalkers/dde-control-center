@@ -1,6 +1,6 @@
-//SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
 //
-//SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "customregionformatdialog.h"
 
@@ -18,7 +18,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
     QWidget *contentWidget = new QWidget;
     QVBoxLayout *mainVLayout = new QVBoxLayout(contentWidget);
     mainVLayout->setSpacing(0);
-    mainVLayout->setMargin(0);
+    mainVLayout->setContentsMargins(0, 0, 0, 0);
 
     QVBoxLayout *dateGrpHLayout = new QVBoxLayout;
     dateGrpHLayout->setContentsMargins(10, 6, 10, 6);
@@ -31,7 +31,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *dayWidget = new QWidget;
     QHBoxLayout *dayHBoxLayout = new QHBoxLayout(dayWidget);
-    dayHBoxLayout->setMargin(0);
+    dayHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *dayLabel = new QLabel(tr("First day of week"));
     m_dayCombo = new QComboBox;
     dayHBoxLayout->addWidget(dayLabel);
@@ -39,7 +39,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *shortDateWidget = new QWidget;
     QHBoxLayout *shortDateHBoxLayout = new QHBoxLayout(shortDateWidget);
-    shortDateHBoxLayout->setMargin(0);
+    shortDateHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *shortDateLabel = new QLabel(tr("Short date"));
     m_shortDateCombo = new QComboBox;
     shortDateHBoxLayout->addWidget(shortDateLabel);
@@ -47,7 +47,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *longDateWidget = new QWidget;
     QHBoxLayout *longDateHBoxLayout = new QHBoxLayout(longDateWidget);
-    longDateHBoxLayout->setMargin(0);
+    longDateHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *longDateLabel = new QLabel(tr("Long date"));
     m_longDateCombo = new QComboBox;
     longDateHBoxLayout->addWidget(longDateLabel);
@@ -68,7 +68,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *shortTimeWidget = new QWidget;
     QHBoxLayout *shortTimeHBoxLayout = new QHBoxLayout(shortTimeWidget);
-    shortTimeHBoxLayout->setMargin(0);
+    shortTimeHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *shortTimeLabel = new QLabel(tr("Short time"));
     m_shortTimeCombo = new QComboBox;
     shortTimeHBoxLayout->addWidget(shortTimeLabel);
@@ -76,7 +76,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *longTimeWidget = new QWidget;
     QHBoxLayout *longTimeHBoxLayout = new QHBoxLayout(longTimeWidget);
-    longTimeHBoxLayout->setMargin(0);
+    longTimeHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *longTimeLabel = new QLabel(tr("Long time"));
     m_longTimeCombo = new QComboBox;
     longTimeHBoxLayout->addWidget(longTimeLabel);
@@ -96,7 +96,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *currencyWidget = new QWidget;
     QHBoxLayout *currencyHBoxLayout = new QHBoxLayout(currencyWidget);
-    currencyHBoxLayout->setMargin(0);
+    currencyHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *currencyLabel = new QLabel(tr("Currency symbol"));
     m_currencyValueLabel = new QLabel("$");
     m_currencyValueLabel->setAlignment(Qt::AlignRight);
@@ -105,7 +105,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *numberWidget = new QWidget;
     QHBoxLayout *numberHBoxLayout = new QHBoxLayout(numberWidget);
-    numberHBoxLayout->setMargin(0);
+    numberHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *numberLabel = new QLabel(tr("Numbers"));
     m_numberValueLabel = new QLabel("123456789");
     m_numberValueLabel->setAlignment(Qt::AlignRight);
@@ -114,7 +114,7 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
 
     QWidget *paperWidget = new QWidget;
     QHBoxLayout *paperHBoxLayout = new QHBoxLayout(paperWidget);
-    paperHBoxLayout->setMargin(0);
+    paperHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *paperLabel = new QLabel(tr("Paper"));
     m_paperValueLabel = new QLabel("A4");
     m_paperValueLabel->setAlignment(Qt::AlignRight);
@@ -140,11 +140,10 @@ CustomRegionFormatDialog::CustomRegionFormatDialog(QWidget *parent)
     connect(getButton(1), &QPushButton::clicked, this, &CustomRegionFormatDialog::onSaved);
 }
 
-CustomRegionFormatDialog::~CustomRegionFormatDialog()
-{
-}
+CustomRegionFormatDialog::~CustomRegionFormatDialog() { }
 
-void CustomRegionFormatDialog::initRegionFormat(const QLocale &locale, const RegionFormat &regionFormat)
+void CustomRegionFormatDialog::initRegionFormat(const QLocale &locale,
+                                                const RegionFormat &regionFormat)
 {
     RegionAvailableData regionFormatsAvailable = RegionProxy::allTextData(locale);
     m_dayCombo->addItems(regionFormatsAvailable.daysAvailable);
@@ -157,8 +156,10 @@ void CustomRegionFormatDialog::initRegionFormat(const QLocale &locale, const Reg
     m_paperValueLabel->setText(RegionProxy::regionFormat(locale).paperFormat);
 
     m_dayCombo->setCurrentText(locale.standaloneDayName(regionFormat.firstDayOfWeekFormat));
-    m_shortDateCombo->setCurrentText(locale.toString(QDate(2023, 1, 1), regionFormat.shortDateFormat));
-    m_longDateCombo->setCurrentText(locale.toString(QDate(2023, 1, 1), regionFormat.longDateFormat));
+    m_shortDateCombo->setCurrentText(
+            locale.toString(QDate(2023, 1, 1), regionFormat.shortDateFormat));
+    m_longDateCombo->setCurrentText(
+            locale.toString(QDate(2023, 1, 1), regionFormat.longDateFormat));
     m_shortTimeCombo->setCurrentText(locale.toString(QTime(1, 1, 1), regionFormat.shortTimeFormat));
     m_longTimeCombo->setCurrentText(locale.toString(QTime(1, 1, 1), regionFormat.longTimeFormat));
 }
@@ -167,9 +168,11 @@ void CustomRegionFormatDialog::onSaved()
 {
     RegionAvailableData regionFormat = RegionProxy::allFormat();
     m_format.firstDayOfWeekFormat = m_dayCombo->currentIndex() + 1;
-    m_format.shortDateFormat = regionFormat.shortDatesAvailable.at(m_shortDateCombo->currentIndex());
+    m_format.shortDateFormat =
+            regionFormat.shortDatesAvailable.at(m_shortDateCombo->currentIndex());
     m_format.longDateFormat = regionFormat.longDatesAvailable.at(m_longDateCombo->currentIndex());
-    m_format.shortTimeFormat = regionFormat.shortTimesAvailable.at(m_shortTimeCombo->currentIndex());
+    m_format.shortTimeFormat =
+            regionFormat.shortTimesAvailable.at(m_shortTimeCombo->currentIndex());
     m_format.longTimeFormat = regionFormat.longTimesAvailable.at(m_longTimeCombo->currentIndex());
     m_format.currencyFormat = m_currencyValueLabel->text();
     m_format.numberFormat = m_numberValueLabel->text();

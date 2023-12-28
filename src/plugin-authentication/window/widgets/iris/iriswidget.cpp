@@ -45,7 +45,7 @@ void IrisWidget::initUI()
 
     m_listGrp->setSpacing(1);
     m_listGrp->setContentsMargins(10, 0, 10, 0);
-    m_listGrp->layout()->setMargin(0);
+    m_listGrp->layout()->setContentsMargins(0, 0 , 0, 0);
     m_listGrp->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     QHBoxLayout *headLayout = new QHBoxLayout;
@@ -62,7 +62,7 @@ void IrisWidget::initUI()
 
     QVBoxLayout *mainContentLayout = new QVBoxLayout;
     mainContentLayout->setSpacing(1);
-    mainContentLayout->setMargin(0);
+    mainContentLayout->setContentsMargins(0, 0, 0, 0);
     mainContentLayout->addLayout(headLayout);
     mainContentLayout->addSpacing(2);
     mainContentLayout->addLayout(tipLayout);

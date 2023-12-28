@@ -23,7 +23,7 @@ KeyboardLayoutDialog::KeyboardLayoutDialog(QWidget *parent)
 {
     setFixedSize(QSize(500, 644));
     QHBoxLayout *hlayout = new QHBoxLayout();
-    hlayout->setMargin(0);
+    hlayout->setContentsMargins(0,0,0,0);
     hlayout->setSpacing(0);
 
     m_searchModel = new IndexModel();
@@ -70,7 +70,6 @@ KeyboardLayoutDialog::KeyboardLayoutDialog(QWidget *parent)
     listVLayout->addWidget(m_buttonTuple, 0, Qt::AlignBottom);
     listVLayout->setContentsMargins(20, 10, 20, 10);
 
-    mainVLayout->setMargin(0);
     mainVLayout->addWidget(titleIcon, Qt::AlignTop | Qt::AlignRight);
     mainVLayout->addWidget(headTitle, Qt::AlignCenter);
     mainVLayout->addLayout(listVLayout);

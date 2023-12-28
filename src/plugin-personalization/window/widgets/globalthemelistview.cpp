@@ -495,7 +495,8 @@ void GlobalThemeListView::rowsAboutToBeRemoved(const QModelIndex &parent, int st
 void GlobalThemeListView::paintEvent(QPaintEvent *e)
 {
     Q_D(GlobalThemeListView);
-    QStyleOptionViewItem option = viewOptions();
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
     QPainter painter(viewport());
 
     const QVector<QModelIndex> toBeRendered = d->intersectingSet(e->rect().translated(horizontalOffset(), verticalOffset()));

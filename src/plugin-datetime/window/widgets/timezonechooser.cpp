@@ -17,7 +17,6 @@
 #include <QComboBox>
 #include <QCompleter>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QKeyEvent>
 #include <QLabel>
 #include <QLineEdit>
@@ -72,7 +71,7 @@ TimeZoneChooser::TimeZoneChooser(QWidget *parent)
     hLayout->addStretch();
 
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(titleBar);
     layout->addWidget(m_title, 0, Qt::AlignHCenter | Qt::AlignTop);
@@ -157,7 +156,7 @@ TimeZoneChooser::TimeZoneChooser(QWidget *parent)
 
         QHBoxLayout *popuLayout = new QHBoxLayout;
         popuLayout->setSpacing(0);
-        popuLayout->setMargin(0);
+        popuLayout->setContentsMargins(0, 0, 0, 0);
         popuLayout->addWidget(blurEffect);
         m_popup->setLayout(popuLayout);
 

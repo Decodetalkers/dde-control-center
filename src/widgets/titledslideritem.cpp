@@ -34,18 +34,18 @@ TitledSliderItem::TitledSliderItem(QString title, QWidget *parent)
     topLayout->addWidget(m_titleLabel);
     topLayout->addStretch();
     topLayout->addWidget(m_valueLabel);
-    topLayout->setMargin(0);
+    //topLayout->setMargin(0);
     topLayout->setSpacing(0);
 
     QHBoxLayout *bottomLayout = new QHBoxLayout;
     bottomLayout->setContentsMargins(zeroMg);
     bottomLayout->addWidget(m_slider, 0);
-    bottomLayout->setMargin(0);
+    //bottomLayout->setMargin(0);
     bottomLayout->setSpacing(0);
     m_bottomLayout = bottomLayout;
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(0);
+    //mainLayout->setMargin(0);
     mainLayout->setSpacing(0);
     mainLayout->setContentsMargins(10, 8, 10, 8);
     mainLayout->addLayout(topLayout);

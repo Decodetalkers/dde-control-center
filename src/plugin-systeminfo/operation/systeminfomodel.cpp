@@ -33,7 +33,7 @@ static QString formatCap(qulonglong cap, const int size = 1024, quint8 precision
 
 SystemInfoModel::SystemInfoModel(QObject *parent)
     : QObject(parent)
-    , m_type(64)
+    , m_type("64")
     , m_endUserAgreementText(std::nullopt)
     , m_gnuLicense(std::nullopt)
     , m_licenseState(ActiveState::Unauthorized)

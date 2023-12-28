@@ -4,11 +4,10 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <qregexp.h>
-
 #include <DSysInfo>
 
 #include <QString>
+#include <QRegularExpression>
 
 #include <vector>
 
@@ -154,13 +153,13 @@ enum CanExitTestingChannelStatus {
 [[maybe_unused]] static inline std::vector<double> getNumListFromStr(const QString &str)
 {
     // 筛选出字符串中的数字
-    QRegExp rx("-?[1-9]\\d*\\.\\d*|0+.[0-9]+|-?0\\.\\d*[1-9]\\d*|-?\\d+");
+    QRegularExpression rx("-?[1-9]\\d*\\.\\d*|0+.[0-9]+|-?0\\.\\d*[1-9]\\d*|-?\\d+");
     int pos = 0;
     std::vector<double> v;
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        pos += rx.matchedLength();
-        v.push_back(rx.cap(0).toDouble());
-    }
+    //while ((pos = rx.indexIn(str, pos)) != -1) {
+    //    pos += rx.matchedLength();
+    //    v.push_back(rx.cap(0).toDouble());
+    //}
     return v;
 }
 

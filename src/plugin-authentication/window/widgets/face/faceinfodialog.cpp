@@ -58,7 +58,7 @@ void FaceInfoDialog::initWidget()
     DFontSizeManager::instance()->bind(m_explainTips, DFontSizeManager::T6);
     m_mainLayout->addWidget(m_explainTips, 0, Qt::AlignHCenter);
 
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
     m_mainLayout->setSpacing(0);
     setLayout(m_mainLayout);
 

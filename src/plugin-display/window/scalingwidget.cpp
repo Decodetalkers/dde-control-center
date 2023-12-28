@@ -27,7 +27,7 @@ ScalingWidget::ScalingWidget(QWidget *parent)
     m_title->setText(tr("Display Scaling"));
 
     m_tipWidget->setAccessibleName("ScalingWidget_tipWidget");
-    m_centralLayout->setMargin(0);
+    m_centralLayout->setContentsMargins(0, 0, 0, 0);
     m_centralLayout->setSpacing(8);
     m_centralLayout->addWidget(m_title);
 

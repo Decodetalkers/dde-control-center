@@ -44,7 +44,7 @@ DeveloperModeWidget::DeveloperModeWidget(QWidget *parent)
     m_lab->setVisible(false);
 
     QVBoxLayout *vBoxLayout = new QVBoxLayout;
-    vBoxLayout->setMargin(0);
+    //vBoxLayout->setMargin(0);
     vBoxLayout->setSpacing(10);
     vBoxLayout->setContentsMargins(0, 10, 0, 10);
     vBoxLayout->addWidget(m_devBtn);

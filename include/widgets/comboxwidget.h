@@ -8,7 +8,6 @@
 #include <QComboBox>
 
 QT_BEGIN_NAMESPACE
-class QStringList;
 class QLabel;
 QT_END_NAMESPACE
 

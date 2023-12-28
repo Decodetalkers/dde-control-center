@@ -59,7 +59,7 @@ BootWidget::BootWidget(QWidget *parent)
 
     m_listLayout = new QVBoxLayout;
     m_listLayout->addSpacing(10);
-    m_listLayout->setMargin(0);
+    //m_listLayout->setMargin(0);
 
     m_bootList = new CommonInfoListView(this);
     m_bootList->setAccessibleName("List_bootlist");
@@ -121,7 +121,7 @@ BootWidget::BootWidget(QWidget *parent)
     groupOther->setSpacing(10);
     groupOther->appendItem(m_theme);
     groupOther->setSpacing(10);
-    layout->setMargin(0);
+    //layout->setMargin(0);
     layout->addSpacing(10);
     layout->addWidget(m_background);
     layout->addSpacing(10);
@@ -339,7 +339,7 @@ void BootWidget::showGrubEditAuthPasswdDialog(bool isReset)
     grid->addWidget(label2, 2, 0, 1, 1);
     grid->addWidget(edit2, 2, 1, 1, 1);
     grid->setRowMinimumHeight(0, 40);
-    grid->setMargin(0);
+    grid->setContentsMargins(0, 0, 0, 0);
     m_grubEditAuthDialog->addContent(widget);
     m_grubEditAuthDialog->addButton(tr("Cancel", "button"), false, DDialog::ButtonNormal);
     m_grubEditAuthDialog->addButton(tr("Confirm", "button"), true, DDialog::ButtonRecommend);

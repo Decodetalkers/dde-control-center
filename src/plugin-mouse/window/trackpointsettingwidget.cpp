@@ -27,7 +27,7 @@ TrackPointSettingWidget::TrackPointSettingWidget(QWidget *parent) : QWidget(pare
     m_trackPointSettingsGrp->appendItem(m_trackMoveSlider);
 
     m_contentLayout = new QVBoxLayout();
-    m_contentLayout->setMargin(0);
+    //m_contentLayout->setMargin(0);
     m_contentLayout->addWidget(m_trackPointSettingsGrp);
     m_contentLayout->addStretch();
 

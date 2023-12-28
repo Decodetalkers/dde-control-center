@@ -38,7 +38,7 @@ BrightnessWidget::BrightnessWidget(QWidget *parent)
     , m_nightTipsSpacerItem(new QSpacerItem(0, 6))
     , m_nightManualSpacerItem(new QSpacerItem(0, 20))
 {
-    m_centralLayout->setMargin(0);
+    m_centralLayout->setContentsMargins(0, 0, 0, 0);
     m_centralLayout->setSpacing(0);
 
     m_brightnessTitle = new TitleLabel(tr("Brightness"), this);

@@ -67,7 +67,7 @@ void AddFingerDialog::initWidget()
     m_mainLayout->setSpacing(0);
     m_mainLayout->addLayout(m_btnHLayout);
 
-    m_mainLayout->setMargin(0);
+    m_mainLayout->setContentsMargins(0, 0 ,0, 0);
     m_mainLayout->setSpacing(0);
 
     setLayout(m_mainLayout);

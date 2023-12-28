@@ -72,7 +72,7 @@ void ButtonTuple::removeSpacing()
 void ButtonTuple::initUI()
 {
     QHBoxLayout *layout = new QHBoxLayout;
-    layout->setMargin(0);
+    //layout->setMargin(0);
     layout->setSpacing(0);
     layout->addWidget(m_leftButton);
     layout->addSpacing(10);

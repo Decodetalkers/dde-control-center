@@ -2,18 +2,17 @@
 //
 //SPDX-License-Identifier: GPL-3.0-or-later
 #include "listview.h"
+#include <dtkcore_global.h>
 #include <QDebug>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QScrollBar>
 #include <QModelIndex>
 
-#include <DApplicationHelper>
 #include <DPalette>
 
 DGUI_USE_NAMESPACE
-DCORE_USE_NAMESPACE
-DWIDGET_USE_NAMESPACE
+
 using namespace DCC_NAMESPACE;
 /////////////////////////////////////////
 namespace DCC_NAMESPACE {
@@ -503,7 +502,8 @@ void ListView::setSelection(const QRect &rect, QItemSelectionModel::SelectionFla
 void ListView::paintEvent(QPaintEvent *e)
 {
     Q_D(const ListView);
-    QStyleOptionViewItem option = viewOptions();
+    QStyleOptionViewItem option;
+    initViewItemOption(&option);
     QPainter painter(viewport());
 
     const QVector<QModelIndex> toBeRendered = d->intersectingSet(e->rect().translated(horizontalOffset(), verticalOffset()));

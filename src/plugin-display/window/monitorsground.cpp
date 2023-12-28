@@ -15,7 +15,6 @@
 #include <QTimer>
 #include <QWidget>
 
-#include <float.h>
 #include <math.h>
 
 using namespace DCC_NAMESPACE;
@@ -302,7 +301,7 @@ void MonitorsGround::resizeEvent(QResizeEvent *event)
     QGraphicsView::resizeEvent(event);
 }
 
-void MonitorsGround::enterEvent(QEvent *)
+void MonitorsGround::enterEvent(QEnterEvent *)
 {
     auto p = parentWidget();
     while (p && !m_scrollArea) {

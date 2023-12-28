@@ -19,7 +19,6 @@
 #include <DIconTheme>
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QVBoxLayout>
 
 DGUI_USE_NAMESPACE

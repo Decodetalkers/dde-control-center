@@ -5,10 +5,10 @@
 #include "fingerdetailwidget.h"
 #include "charamangermodel.h"
 
-#include <DApplicationHelper>
 #include <DFontSizeManager>
 #include <DTipLabel>
 #include <DIconTheme>
+#include <DGuiApplicationHelper>
 
 #include <QVBoxLayout>
 #include <QLabel>
@@ -41,7 +41,7 @@ void FingerDetailWidget::initFingerUI()
     mainContentLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 
     m_fingerWidget->setContentsMargins(0, 0, 0, 0);
-    m_fingerWidget->layout()->setMargin(0);
+    m_fingerWidget->layout()->setContentsMargins(0, 0, 0, 0);
     mainContentLayout->addWidget(m_fingerWidget);
     mainContentLayout->addSpacing(30);
 

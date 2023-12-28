@@ -46,16 +46,16 @@ void DCCDBusInterfacePrivate::init(QObject *parent)
 
 QVariant DCCDBusInterfacePrivate::demarshall(const QMetaProperty &metaProperty, const QVariant &value)
 {
-    if (value.userType() == metaProperty.userType())
-        return value;
+    //if (value.userType() == metaProperty.userType())
+    //    return value;
 
-    QVariant result = QVariant(metaProperty.userType(), nullptr);
-    if (value.userType() == qMetaTypeId<QDBusArgument>()) {
-        QDBusArgument dbusArg = value.value<QDBusArgument>();
-        QDBusMetaType::demarshall(dbusArg, metaProperty.userType(), result.data());
-    }
+    //QVariant result = QVariant(metaProperty.userType(), nullptr);
+    //if (value.userType() == qMetaTypeId<QDBusArgument>()) {
+    //    QDBusArgument dbusArg = value.value<QDBusArgument>();
+    //    QDBusMetaType::demarshall(dbusArg, metaProperty.userType(), result.data());
+    //}
 
-    return result;
+    return QVariant();
 }
 
 QVariant DCCDBusInterfacePrivate::updateProp(const char *propname, const QVariant &value)

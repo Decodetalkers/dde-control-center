@@ -69,11 +69,10 @@ ShortcutItem::ShortcutItem(QFrame *parent)
     QRect strRect = fm.boundingRect(m_shortcutEdit->placeholderText());
     QStyleOptionFrame opt;
     initStyleOption(&opt);
-    int strWidth = (style()->sizeFromContents(QStyle::CT_LineEdit, &opt, strRect.size().
-                                           expandedTo(QApplication::globalStrut()), m_shortcutEdit)).width();
+    QSize strWidth = style()->sizeFromContents(QStyle::CT_LineEdit, &opt, strRect.size());
     int borderWidth = m_shortcutEdit->minimumSizeHint().width() - fm.maxWidth();
 
-    m_shortcutEdit->setMinimumWidth(strWidth + borderWidth + 8);  //始终有些误差
+    m_shortcutEdit->setMinimumWidth(strWidth.width() + borderWidth + 8);  //始终有些误差
     m_shortcutEdit->hide();
 
     setLayout(layout);
@@ -215,7 +214,7 @@ QString ShortcutItem::configName() const
 {
     QString configName = m_configName;
     for (int i = 0; i < configName.size(); i++) {
-        if (configName[i] == "-") {
+        if (configName[i] == '-') {
             QChar upperChar = configName.at(i + 1).toUpper();
             configName.remove(i, 2);
             configName.insert(i, upperChar);

@@ -39,7 +39,7 @@ MonitorControlWidget::MonitorControlWidget(int activateHeight, QWidget *parent)
     btnsLayout->addStretch();
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(20);
     mainLayout->addWidget(m_screensGround);
     mainLayout->addWidget(m_effectiveReminder);

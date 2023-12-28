@@ -61,7 +61,7 @@ PluginData loadPlugin(const QPair<PluginManager *, QString> &pair)
     PluginData data;
     data.Plugin = nullptr;
     data.Module = nullptr;
-    data.Location = -1;
+    data.Location = "-1";
     auto &&fileName = pair.second;
     QFileInfo fileInfo(fileName);
     QSettings settings(DCC_NAMESPACE::CollapseConfgPath, QSettings::IniFormat);
@@ -145,10 +145,10 @@ void PluginManager::loadModules(ModuleObject *root, bool async, const QStringLis
     }
 
     QFutureWatcher<PluginData> *watcher = new QFutureWatcher<PluginData>(this);
-    std::function<QPair<PluginData, QString>(const QPair<PluginManager *, QString> &pair)>
-            loadPluginAndRecord = [](const QPair<PluginManager *, QString> &pair) {
+    std::function<std::pair<PluginData, QString>(const std::pair<PluginManager *, QString> &pair)>
+            loadPluginAndRecord = [](const std::pair<PluginManager *, QString> &pair) {
                 auto plugin = loadPlugin(pair);
-                return QPair{ plugin, pair.second };
+                return std::make_pair(plugin, pair.second);
             };
     auto results = QtConcurrent::mapped(libraryNames, loadPluginAndRecord).results();
     using Dtk::Gui::DGuiApplicationHelper;
@@ -183,7 +183,7 @@ void PluginManager::loadModules(ModuleObject *root, bool async, const QStringLis
     });
     watcher->setFuture(m_future);
 
-    QtConcurrent::run([this] {
+    auto e = QtConcurrent::run([this] {
         // NOTE: wait for all plugin for 10 seconds, if timeout and run with sync
         // then watcher will be finished
         QThread::sleep(10);

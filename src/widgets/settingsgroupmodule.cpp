@@ -34,7 +34,7 @@ public:
         settingsGroup->setSpacing(spacing);
 
         settingsGroup->getLayout()->setContentsMargins(0, 0, 0, 0);
-        settingsGroup->layout()->setMargin(0);
+        //settingsGroup->layout()->setMargin(0);
         settingsGroup->setSizePolicy(hor, ver);
 
         for (auto &&tmpChild : q->childrens()) {

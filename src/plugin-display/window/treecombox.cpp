@@ -1,16 +1,13 @@
 //SPDX-FileCopyrightText: 2018 - 2023 UnionTech Software Technology Co., Ltd.
 //
 //SPDX-License-Identifier: GPL-3.0-or-later
-#include "cooperationsettingsdialog.h"
 #include "treecombox.h"
 
 #include <DStyle>
-#include <DApplicationHelper>
 #include <QLabel>
 #include <QPushButton>
 
 DWIDGET_USE_NAMESPACE
-using namespace DCC_NAMESPACE;
 
 TreeCombox::TreeCombox(QStandardItemModel *model, QWidget *parent)
     : DComboBox(parent)

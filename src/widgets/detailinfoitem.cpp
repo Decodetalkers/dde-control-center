@@ -31,7 +31,7 @@ void DetailInfoItem::initUi()
     QVBoxLayout *mainlayout = new QVBoxLayout;
 
     mainlayout->setSpacing(0);
-    mainlayout->setMargin(0);
+    //mainlayout->setMargin(0);
 
     QHBoxLayout *hboxlayout = new QHBoxLayout;
 

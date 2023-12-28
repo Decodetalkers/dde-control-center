@@ -48,7 +48,7 @@ public:
     explicit AuthenticationLinkButtonItem(QWidget *parent = nullptr);
 
 protected:
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
 
@@ -82,7 +82,7 @@ Q_SIGNALS:
     void editTextFinished(QString finger);
 
 protected:
-    void enterEvent(QEvent *event) override;
+    void enterEvent(QEnterEvent *event) override;
     void leaveEvent(QEvent *event) override;
 
 private:

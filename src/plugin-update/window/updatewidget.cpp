@@ -28,14 +28,14 @@ UpdateWidget::UpdateWidget(QWidget *parent)
     , m_lastoreHeartBeatTimer(new QTimer)
     , m_updateState(UpdatesStatus::Default)
 {
-    m_layout->setMargin(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *recentHistoryWidget = new QWidget;
     recentHistoryWidget->setAccessibleName("Update_Widget");
     QVBoxLayout *bottomLayout = new QVBoxLayout;
     recentHistoryWidget->setLayout(bottomLayout);
 
-    bottomLayout->setMargin(0);
+    bottomLayout->setContentsMargins(0, 0, 0 ,0);
     bottomLayout->setSpacing(0);
     bottomLayout->addWidget(m_label, 0, Qt::AlignCenter);
 

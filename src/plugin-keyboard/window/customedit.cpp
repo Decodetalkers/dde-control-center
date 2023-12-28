@@ -31,8 +31,8 @@ CustomEdit::CustomEdit(ShortcutModel *model, QWidget *parent):
     QVBoxLayout *mainlayout = new QVBoxLayout;
     QHBoxLayout *buttonlayout = new QHBoxLayout;
 
-    mainlayout->setMargin(0);
-    buttonlayout->setMargin(0);
+    mainlayout->setContentsMargins(0,0,0,0);
+    buttonlayout->setContentsMargins(0,0,0,0);
     mainlayout->setSpacing(0);
     buttonlayout->setSpacing(1);
 

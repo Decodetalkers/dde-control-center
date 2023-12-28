@@ -138,7 +138,7 @@ void PersonalizationThemeWidget::mouseMoveEvent(QMouseEvent *event)
 void PersonalizationThemeWidget::setMainLayout(QBoxLayout *layout, bool titleBelowPic)
 {
     m_centerLayout = layout;
-    m_centerLayout->setMargin(0);
+    m_centerLayout->setContentsMargins(0, 0, 0, 0);
     m_centerLayout->setAlignment(Qt::AlignLeft);
     setLayout(m_centerLayout);
     m_titleBelowPic = titleBelowPic;

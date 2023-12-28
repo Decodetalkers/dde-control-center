@@ -5,10 +5,10 @@
 #include "irisdetailwidget.h"
 #include "charamangermodel.h"
 
-#include <DApplicationHelper>
 #include <DFontSizeManager>
 #include <DTipLabel>
 #include <DIconTheme>
+#include <DGuiApplicationHelper>
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -45,7 +45,7 @@ void IrisDetailWidget::initIrisShow()
     m_mainContentLayout->setContentsMargins(0, 10, 0, 0);
 
     m_irisWidget->setContentsMargins(0, 0, 0, 0);
-    m_irisWidget->layout()->setMargin(0);
+    m_irisWidget->layout()->setContentsMargins(0, 0, 0, 0);
 
     setLayout(m_mainContentLayout);
     setFocusPolicy(Qt::FocusPolicy::ClickFocus);

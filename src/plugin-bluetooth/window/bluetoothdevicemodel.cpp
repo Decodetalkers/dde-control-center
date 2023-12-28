@@ -45,7 +45,7 @@ struct BluetoothDeviceItemAction
         , loadingIndicator(nullptr)
         , item(new DStandardItem())
     {
-        iconAction->setData(static_cast<const void *>(device));
+        iconAction->setData(QVariant::fromValue(static_cast<const void *>(device)));
         actionList.append(percentageText);
         actionList.append(percentageIcon);
         actionList.append(spinnerAction);

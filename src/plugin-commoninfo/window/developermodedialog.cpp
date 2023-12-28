@@ -105,7 +105,7 @@ DeveloperModeDialog::DeveloperModeDialog(QObject *parent)
     //加入布局
     vBoxLayout->addLayout(titleHBoxLayout);
     vBoxLayout->addLayout(contentVBoxLayout);
-    vBoxLayout->setMargin(0);
+    //vBoxLayout->setMargin(0);
     setLayout(vBoxLayout);
 
     m_importFile->setModal(true);
